@@ -1,0 +1,43 @@
+extends layout
+
+block content
+    .container
+        form(action="insertSala" method="post")
+            .form-group.row
+                //Corp A,b,c..
+                label.col-sm-1.col-form-label(for="corp") Corp:
+                .col-sm-5
+                    select.form-control(id="corp")
+                        option A
+                        option B
+                        option C
+                        option D
+            .form-group.row
+                //etaj
+                label.col-sm-1.col-form-label(for="etaj") Etaj:
+                .col-sm-5
+                    select.form-control(id="etaj")
+                        option P
+                        option 1
+                        option 2
+                        option 3
+            .form-group.row
+                //numar
+                label.col-sm-1.col-form-label(for="numar") Numar:
+                .col-sm-5
+                    input.form-control.is-invalid(id="numar" type="number")
+                    .invalid-feedback Nu poate fi mai mic decat 0!
+            .form-group.row
+                //capacitate
+                label.col-sm-1.col-form-label(for="capacitate") Capacitate:
+                .col-sm-5
+                    input.form-control.is-invalid(id="capacitate" type="number")
+                    .invalid-feedback Nu poate fi mai mic decat 0!
+            .form-group.row
+                //cod
+                label.col-sm-1.col-form-label(for="cod") Cod Generat:
+                .col-sm-5
+                    input.form-control(id="cod" type="text" readonly value="AP12")
+            button.btn.btn-primary(type="submit") Isereaza sala
+            //input.form-control(type="text" name="username" id="username" placeholder="Username" required)
+    script(src="javascripts/script.js") 

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+    if name == null 
+        h2 You are not logged in
+    else
+        h2 Welcome back, #{name}.
+
+        if sali == null
+            h2 You are not allowed to see this resource or it does not exist.
+        else
+            table.table
+                thead
+                    tr
+                        th(scope="col") COD
+                        th(scope="col") Corp
+                        th(scope="col") Etaj
+                        th(scope="col") Nr sala
+                        th(scope="col") Capacitate
+                tbody
+                    each val in sali
+                        tr
+                            th(scope="row") #{val.cod}
+                            td #{val.corp}
+                            td #{val.etaj}
+                            td #{val.numar}
+                            td #{val.capacitate}

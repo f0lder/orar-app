@@ -36,7 +36,7 @@ function genCode() {
 
 function validateInput(id) {
 
-    if (document.getElementById(id).value != '') {
+    if (document.getElementById(id).value != '' && document.getElementById(id).value > 0) {
         document.getElementById(id).classList.add("is-valid");
         document.getElementById(id).classList.remove("is-invalid");
         document.getElementById('iSala').removeAttribute('disabled');

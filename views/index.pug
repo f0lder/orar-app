@@ -4,15 +4,23 @@ block content
 
 	h1.display-2= title
 	p.lead Welcome to #{title}
+	if redirected 
+		.alert.alert-danger.alert-dismissible.fade.show.mb-3.text-center.mb-4#login-alert
+			strong Please log in to acces this!
+			button.close(type="button" data-dismiss="alert" aria-label="Close" id='alert')
+				span(aria-hidden="true") &times;
 	.w-25.m-auto
 		form(action="/auth" method="post")
 			.form-outline.mb-4
 				input.form-control(type="text" name="username" id="username" placeholder="Username" required)
+				.invalid-feedback Nume invalid!
 			.form-outline.mb-4
 				input.form-control(type="password" name="password" id="password" placeholder="Password" required)
+				.invalid-feedback Parola invalida!
 			.row.mb-4
 				.col.d-flex.justify-content-center
 					.form-check
 						input.form-control(type="checkbox" id="check" value='' checked='')
 						label.form-check-label(for="check") Remember me
-			button.btn.btn-primary.btn-block.mb-4(type='submit') Login
+			button.btn.btn-primary.btn-block(type='submit' id='login') Login
+	script(src="javascripts/checkLogin.js") 

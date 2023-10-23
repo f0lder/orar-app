@@ -7,7 +7,7 @@ block content
                 //Corp A,b,c..
                 label.col-sm-1.col-form-label(for="corp") Corp:
                 .col-sm-5
-                    select.form-control(id="corp")
+                    select.form-control(id="corp" name="corp")
                         option A
                         option B
                         option C
@@ -16,8 +16,8 @@ block content
                 //etaj
                 label.col-sm-1.col-form-label(for="etaj") Etaj:
                 .col-sm-5
-                    select.form-control(id="etaj")
-                        option P
+                    select.form-control(id="etaj" name="etaj")
+                        option(value='0') P
                         option 1
                         option 2
                         option 3
@@ -25,19 +25,23 @@ block content
                 //numar
                 label.col-sm-1.col-form-label(for="numar") Numar:
                 .col-sm-5
-                    input.form-control.is-invalid(id="numar" type="number")
+                    input.form-control.is-invalid(id="numar" type="number" name="numar")
                     .invalid-feedback Nu poate fi mai mic decat 0!
             .form-group.row
                 //capacitate
                 label.col-sm-1.col-form-label(for="capacitate") Capacitate:
                 .col-sm-5
-                    input.form-control.is-invalid(id="capacitate" type="number")
+                    input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
                     .invalid-feedback Nu poate fi mai mic decat 0!
             .form-group.row
                 //cod
                 label.col-sm-1.col-form-label(for="cod") Cod Generat:
                 .col-sm-5
                     input.form-control(id="cod" type="text" readonly value="AP12")
-            button.btn.btn-primary(type="submit") Isereaza sala
+            .form-grop.row
+                .p-2
+                    button.btn.btn-primary.m-20(type="submit" id="iSala") Isereaza sala
+                .p-2 
+                    button.btn.btn-secondary(type="reset" id="rSala") Reset
             //input.form-control(type="text" name="username" id="username" placeholder="Username" required)
     script(src="javascripts/script.js") 

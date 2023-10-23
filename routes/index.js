@@ -27,6 +27,8 @@ const SaliSchema = new mongoose.Schema({
 	etaj: Number,
 	numar: Number,
 	capacitate: Number
+}, {
+	versionKey: false
 })
 
 //set the schema
@@ -39,9 +41,17 @@ async function getUser(username, password) {
 async function getSali() {
 	return await sali.find({});
 }
-async function insertSala(sala){
-	const result = await sali.insertMany(sala);
-	
+async function insertSala(corp, etaj, numar, capacitate) {
+
+	const Sala = mongoose.model('sali', SaliSchema);
+	const S = new Sala({
+		corp: corp,
+		etaj: etaj,
+		numar: numar,
+		capacitate: capacitate
+	});
+	console.dir(S);
+	await S.save();
 }
 
 function codSala(sala) {
@@ -90,28 +100,29 @@ router.get("/home", function (request, response) {
 			response.render("home", { sali: rooms, name: request.session.username });
 		});
 	} else {
-		response.render("home", {});
+		response.render('index',{redirected: true,title:'Orar-app'});
 	}
 });
 
 router.get("/insertData", function (req, res) {
-	res.render("insert");
+	if (req.session.loggedin) {
+		res.render("insert");
+	} else {
+		res.render('index',{redirected: true,title:'Orar-app'});
+	}
 });
 
 module.exports = router;
-router.post('/insertSala',function(req,res){
-	//TODO check for login
-	//TODO add mongoose create doc and save doc
-	let sala ={
-		corp:req.body.corp,
-		etaj:req.body.etaj,
-		numar:req.body.numar,
-		capacitate:req.body.capacitate,
-	}
+router.post('/insertSala', function (req, res) {
+	if (req.session.loggedin) {
+		//TODO check for login
+		//TODO add mongoose create doc and save doc
 
-	if(sala.etaj =='P'){
-		sala.etah = 0;
+		insertSala(req.body.corp, req.body.etaj, req.body.numar, req.body.capacitate).then((p) => {
+			console.log("A doc was inserted!");
+			res.redirect('/home');
+		});
+	} else {
+		res.render('index',{redirected: true,title:'Orar-app'});
 	}
-
-	insertSala(sala);
 });

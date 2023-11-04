@@ -26,3 +26,23 @@ block content
                             td #{val.etaj}
                             td #{val.numar}
                             td #{val.capacitate}
+            each val in sali
+                .card.d-inline-block.m-2(style="width: 14rem")
+                    .card-header.text-center #{val.cod}
+                    ul.list-group.list-group-flush
+                        li.list-group-item.p-0.text-center
+                            .row
+                                .col.p-2 Corp 
+                                .col.border-left.p-2 #{val.corp}
+                        li.list-group-item.p-0.text-center
+                            .row
+                                .col.p-2 Etaj
+                                .col.border-left.p-2 #{val.etaj}
+                        li.list-group-item.p-0.text-center
+                            .row 
+                                .col.p-2 Nr. Sala
+                                .col.border-left.p-2 #{val.numar}
+                        li.list-group-item.p-0.text-center
+                            .row
+                                .col.p-2 Capacitate
+                                .col.border-left.p-2 #{val.capacitate}

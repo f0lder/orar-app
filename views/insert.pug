@@ -2,46 +2,87 @@ extends layout
 
 block content
     .container
-        form(action="insertSala" method="post")
-            .form-group.row
-                //Corp A,b,c..
-                label.col-sm-1.col-form-label(for="corp") Corp:
-                .col-sm-5
-                    select.form-control(id="corp" name="corp")
-                        option A
-                        option B
-                        option C
-                        option D
-            .form-group.row
-                //etaj
-                label.col-sm-1.col-form-label(for="etaj") Etaj:
-                .col-sm-5
-                    select.form-control(id="etaj" name="etaj")
-                        option(value='0') P
-                        option 1
-                        option 2
-                        option 3
-            .form-group.row
-                //numar
-                label.col-sm-1.col-form-label(for="numar") Numar:
-                .col-sm-5
-                    input.form-control.is-invalid(id="numar" type="number" name="numar")
-                    .invalid-feedback Nu poate fi mai mic decat 0!
-            .form-group.row
-                //capacitate
-                label.col-sm-1.col-form-label(for="capacitate") Capacitate:
-                .col-sm-5
-                    input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
-                    .invalid-feedback Nu poate fi mai mic decat 0!
-            .form-group.row
-                //cod
-                label.col-sm-1.col-form-label(for="cod") Cod Generat:
-                .col-sm-5
-                    input.form-control(id="cod" type="text" readonly value="AP12")
-            .form-grop.row
-                .p-2
-                    button.btn.btn-primary.m-20(type="submit" id="iSala") Isereaza sala
-                .p-2 
-                    button.btn.btn-secondary(type="reset" id="rSala") Reset
-            //input.form-control(type="text" name="username" id="username" placeholder="Username" required)
-    script(src="javascripts/script.js") 
+        .row
+            .col-3.border.m-1.p-4(style="width: 30rem")
+                h2.display-5 Insereaza sala
+                form(action="insertSala" method="post")
+                    .form-group.row.m-1
+                        //Corp A,b,c..
+                        .col-4
+                            label.col-form-label(for="corp") Corp:
+                        .col
+                            select.form-select(id="corp" name="corp")
+                                option A
+                                option B
+                                option C
+                                option D
+                    .form-group.row.m-1
+                        //etaj
+                        .col-4
+                            label.col-form-label(for="etaj") Etaj:
+                        .col
+                            select.form-select(id="etaj" name="etaj")
+                                option(value='0') P
+                                option 1
+                                option 2
+                                option 3
+                    .form-group.row.m-1
+                        //numar
+                        .col-4
+                            label.col-form-label(for="numar") Numar:
+                        .col
+                            input.form-control.is-invalid(id="numar" type="number" name="numar")
+                            .invalid-feedback Nu poate fi mai mic decat 0!
+                    .form-group.row.m-1
+                        //capacitate
+                        .col-4
+                            label.col-form-label(for="capacitate") Capacitate:
+                        .col
+                            input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
+                            .invalid-feedback Nu poate fi mai mic decat 0!
+                    .form-group.row.m-1
+                        //cod
+                        .col-4
+                            label.col-form-label(for="cod") Cod Generat:
+                        .col
+                            input.form-control(id="cod" type="text" readonly value="AP12")
+                    .form-grop.row
+                        .col
+                            button.btn.btn-primary.m-20(type="submit" id="iSala") Isereaza sala
+                        .col
+                            button.btn.btn-outline-secondary(type="reset" id="rSala") Reset
+                    //input.form-control(type="text" name="username" id="username" placeholder="Username" required)
+            // materii: id(readonly), nume, curs, lab, seminar, proiect, idprof(dropdown), grupe(searhbox / multiple select)
+            .col.border.m-2.p-4
+                h2.display-4 Insereaza materie
+                form(action="insertMaterie" method="post")
+                        .form-floating.m-4
+                            input.form-control#ID(type="text" readonly)
+                            label(for ="ID") ID:
+                        .form-floating.m-4
+                            input.form-control#numeMaterie(type="text")
+                            label.col-form-label(for="numeMaterie") Nume:
+                        .form-check.form-check-inline.m-3
+                            input.form-check-input#C(type="checkbox" value="C")
+                            label.form-check-label(for ="C") C
+                        .form-check.form-check-inline.m-3
+                            input.form-check-input#L(type="checkbox" value="L")
+                            label.form-check-label(for ="L") L
+                        .form-check.form-check-inline.m-3
+                            input.form-check-input#S(type="checkbox" value="S")
+                            label.form-check-label(for ="S") S
+                        .form-check.form-check-inline.m-3
+                            input.form-check-input#P(type="checkbox" value="P")
+                            label.form-check-label(for ="P") P
+                        .form-floating.m-4
+                            select.form-select#idProf
+                                option(value="1") Ursan Bogdan-Gabriel
+                            label.col-form-label(for="numeMaterie") Profesor:
+                        .form-floating.m-4
+                            input.form-control#idGrupe(type="search")
+                            label.col-form-label(for="idGrupe") Grupe:
+                        .form-grop.row
+                            .col-6
+                                button.btn.btn-primary.m-20(type="submit" id="iMat") Isereaza materie
+                                button.btn.btn-outline-secondary(type="reset" id="rMat") Reset
+    script(src="javascripts/script.js")

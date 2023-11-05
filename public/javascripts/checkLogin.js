@@ -28,7 +28,9 @@ function validatePass() {
         document.getElementById('login').removeAttribute('disabled');
     }
 }
+if(document.getElementById('alert')){
 document.getElementById('alert').addEventListener('click',removeAlert);
+}
 
 function removeAlert(){
     document.getElementById('login-alert').remove();

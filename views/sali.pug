@@ -3,59 +3,59 @@ extends layout
 
 block content
     //Tot ce este legat de sati
-    .container.row
-        .col-3
-                h2.display-5 Insereaza sala
-                form(action="insertSala" method="post")
-                    .form-group.row.m-1
-                        //Corp A,b,c..
-                        .col-4
-                            label.col-form-label(for="corp") Corp:
-                        .col
-                            select.form-select(id="corp" name="corp")
-                                option A
-                                option B
-                                option C
-                                option D
-                    .form-group.row.m-1
-                        //etaj
-                        .col-4
-                            label.col-form-label(for="etaj") Etaj:
-                        .col
-                            select.form-select(id="etaj" name="etaj")
-                                option(value='0') P
-                                option 1
-                                option 2
-                                option 3
-                    .form-group.row.m-1
-                        //numar
-                        .col-4
-                            label.col-form-label(for="numar") Numar:
-                        .col
-                            input.form-control.is-invalid(id="numar" type="number" name="numar")
-                            .invalid-feedback Nu poate fi mai mic decat 0!
-                    .form-group.row.m-1
-                        //capacitate
-                        .col-4
-                            label.col-form-label(for="capacitate") Capacitate:
-                        .col
-                            input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
-                            .invalid-feedback Nu poate fi mai mic decat 0!
-                    .form-group.row.m-1
-                        //cod
-                        .col-4
-                            label.col-form-label(for="cod") Cod Generat:
-                        .col
-                            input.form-control(id="cod" type="text" readonly value="AP12")
-                    .form-grop.row
-                        .col
-                            button.btn.btn-primary.m-20(type="submit" id="iSala") Isereaza sala
-                        .col
-                            button.btn.btn-outline-secondary(type="reset" id="rSala") Reset
+    .container.row.border.m-auto.mt-4
+        .col
+            h2.display-5 Insereaza sala
+            form(action="/insertSala" method="post")
+                .form-group.row.m-1.mt-4
+                    //Corp A,b,c..
+                    .col-4
+                        label.col-form-label(for="corp") Corp:
+                    .col
+                        select.form-select(id="corp" name="corp")
+                            option A
+                            option B
+                            option C
+                            option D
+                .form-group.row.m-1.mt-4
+                    //etaj
+                    .col-4
+                        label.col-form-label(for="etaj") Etaj:
+                    .col
+                        select.form-select(id="etaj" name="etaj")
+                            option(value='0') P
+                            option 1
+                            option 2
+                            option 3
+                .form-group.row.m-1.mt-4
+                    //numar
+                    .col-4
+                        label.col-form-label(for="numar") Numar:
+                    .col
+                        input.form-control.is-invalid(id="numar" type="number" name="numar")
+                        .invalid-feedback Nu poate fi mai mic decat 0!
+                .form-group.row.m-1.mt-4
+                    //capacitate
+                    .col-4
+                        label.col-form-label(for="capacitate") Capacitate:
+                    .col
+                        input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
+                        .invalid-feedback Nu poate fi mai mic decat 0!
+                .form-group.row.m-1.mt-4
+                    //cod
+                    .col-4
+                        label.col-form-label(for="cod") Cod Generat:
+                    .col
+                        input.form-control(id="cod" type="text" readonly value="AP12")
+                .form-grop.row.p-3
+                    .col
+                        button.btn.btn-primary.m-20(type="submit" id="iSala") Insereaza sala
+                    .col.text-center
+                        button.btn.btn-outline-secondary(type="reset" id="rSala") Reset
         if sali == null
             h2 You are not allowed to see this resource or it does not exist.
         else
-            .col-9
+            .col
                 table.table.table-striped
                     thead
                         tr
@@ -72,23 +72,4 @@ block content
                                 td #{val.etaj}
                                 td #{val.numar}
                                 td #{val.capacitate}
-            each val in sali
-                .card.d-inline-block.m-2(style="width: 14rem")
-                    .card-header.text-center #{val.cod}
-                    ul.list-group.list-group-flush
-                        li.list-group-item.p-0.text-center
-                            .row
-                                .col.p-2 Corp 
-                                .col.border-left.p-2 #{val.corp}
-                        li.list-group-item.p-0.text-center
-                            .row
-                                .col.p-2 Etaj
-                                .col.border-left.p-2 #{val.etaj}
-                        li.list-group-item.p-0.text-center
-                            .row 
-                                .col.p-2 Nr. Sala
-                                .col.border-left.p-2 #{val.numar}
-                        li.list-group-item.p-0.text-center
-                            .row
-                                .col.p-2 Capacitate
-                                .col.border-left.p-2 #{val.capacitate}
+    script(src="javascripts/sali.js")

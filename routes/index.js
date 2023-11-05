@@ -190,6 +190,8 @@ router.get("/insertData", function (req, res) {
 });
 
 
+
+//! all post methods must be here!
 router.post('/insertSala', function (req, res) {
 	if (req.session.loggedin) {
 		//TODO check for login

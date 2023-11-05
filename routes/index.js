@@ -69,7 +69,7 @@ const MaterieSchema = new mongoose.Schema({
 	laborator: Boolean,
 	seminar: Boolean,
 	proiect: Boolean,
-	idProfesor:Number,
+	idProfesor: Number,
 	idGrupa: [String]
 });
 const ProfSchema = new mongoose.Schema({
@@ -104,15 +104,15 @@ const OrarSchema = new mongoose.Schema({
 //set the schemas
 const users = mongoose.model('users', UserSchema);
 const sali = mongoose.model('sali', SaliSchema, "sali");
-const facultati = mongoose.model('facultate',FacSchema,'facultati');
-const departamente = mongoose.model('departament',DepSchema,'departamente');
-const specializari = mongoose.model('specializare',SpecSchema,'specializari');
-const grupe = mongoose.model('grupa',GrupeSchema,'grupe');
-const materii = mongoose.model('materie',MaterieSchema,'materii');
-const profi = mongoose.model('prof',ProfSchema,'profi');
-const ore = mongoose.model('ora',OraSchema,'ore');
-const zile = mongoose.model('zi',ZiSchema,'zile');
-const orare = mongoose.model('orar',OrarSchema,'orare');
+const facultati = mongoose.model('facultate', FacSchema, 'facultati');
+const departamente = mongoose.model('departament', DepSchema, 'departamente');
+const specializari = mongoose.model('specializare', SpecSchema, 'specializari');
+const grupe = mongoose.model('grupa', GrupeSchema, 'grupe');
+const materii = mongoose.model('materie', MaterieSchema, 'materii');
+const profi = mongoose.model('prof', ProfSchema, 'profi');
+const ore = mongoose.model('ora', OraSchema, 'ore');
+const zile = mongoose.model('zi', ZiSchema, 'zile');
+const orare = mongoose.model('orar', OrarSchema, 'orare');
 
 async function getUser(username, password) {
 	return await users.findOne({ username: username, pass: password });
@@ -179,7 +179,7 @@ router.get("/home", function (request, response) {
 			response.render("home", { sali: rooms, name: request.session.username });
 		});
 	} else {
-		response.render('index',{redirected: true,title:'Orar-app'});
+		response.render('index', { redirected: true, title: 'Orar-app' });
 	}
 });
 
@@ -187,7 +187,7 @@ router.get("/insertData", function (req, res) {
 	if (req.session.loggedin) {
 		res.render("insert");
 	} else {
-		res.render('index',{redirected: true,title:'Orar-app'});
+		res.render('index', { redirected: true, title: 'Orar-app' });
 	}
 });
 
@@ -202,7 +202,7 @@ router.post('/insertSala', function (req, res) {
 			res.redirect('/home');
 		});
 	} else {
-		res.render('index',{redirected: true,title:'Orar-app'});
+		res.render('index', { redirected: true, title: 'Orar-app' });
 	}
 });
 

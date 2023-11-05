@@ -24,19 +24,6 @@ function codSala(sala) {
 	}
 }
 
-async function insertSala(corp, etaj, numar, capacitate) {
-
-	const Sala = mongoose.model('sali', SaliSchema);
-	const S = new Sala({
-		corp: corp,
-		etaj: etaj,
-		numar: numar,
-		capacitate: capacitate
-	});
-	console.dir(S);
-	await S.save();
-}
-
 //render the form with data
 router.get("/", function (request, response) {
 	if (request.session.loggedin) {

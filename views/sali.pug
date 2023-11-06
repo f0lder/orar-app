@@ -69,7 +69,12 @@ block content
                             tr
                                 th(scope="row") #{val.cod}
                                 td #{val.corp}
-                                td #{val.etaj}
+                                if val.etaj == 0
+                                    td P
+                                else 
+                                    td #{val.etaj}
                                 td #{val.numar}
                                 td #{val.capacitate}
+
+
     script(src="javascripts/sali.js")

@@ -8,18 +8,21 @@ block content
 		.alert.alert-danger.alert-dismissible.fade.show.text-center.mb-4.w-50.m-auto#login-alert
 			strong Please log in to acces this!
 			button.btn-close(type="button" data-dismiss="alert" aria-label="Close" id='alert')
-	.w-25.m-auto
+	.container.m-auto
 		form(action="/auth" method="post")
-			.form-outline.mb-4
-				input.form-control(type="text" name="username" id="username" placeholder="Username" required)
-				.invalid-feedback Nume invalid!
-			.form-outline.mb-4
-				input.form-control(type="password" name="password" id="password" placeholder="Password" required)
-				.invalid-feedback Parola invalida!
-			.row.mb-4
-				.form-check.m-auto
+			.form-group.row.m-1
+				.col-9.m-auto.mb-3
+					input.form-control(type="text" name="username" id="username" placeholder="Username" required)
+					.invalid-feedback Nume invalid!
+			.form-group.row.m-1
+				.col-9.m-auto
+					input.form-control(type="password" name="password" id="password" placeholder="Password" required)
+					.invalid-feedback Parola invalida!
+			.row.mb-4.m-auto 
+				.form-check
 					input.form-check-input(type="checkbox" id="check" value='' checked='')
 					label.form-check-label(for="check") Remember me
-			button.btn.btn-primary.btn-block(type='submit' id='login') Login
+			.w-100.text-center
+				button.btn.btn-primary.btn-block(type='submit' id='login') Login
 
 	script(src="javascripts/checkLogin.js") 

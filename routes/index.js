@@ -18,101 +18,11 @@ mongoose
 	.then(() => console.log("MongoDB connected"))
 	.catch(err => console.log(err));
 
-//declare table model
-const UserSchema = new mongoose.Schema({
-	email: String,
-	username: String,
-	pass: String
-});
-const SaliSchema = new mongoose.Schema({
-	corp: String,
-	etaj: Number,
-	numar: Number,
-	capacitate: Number
-}, {
-	versionKey: false
-});
 
-const UniSchema = new mongoose.Schema({
-	nume: String,
-});
+const users = require("../models.js").users;
+const sali = require("../models.js").sali;
 
-const FacSchema = new mongoose.Schema({
-	id: Number,
-	nume: String,
-});
-
-const DepSchema = new mongoose.Schema({
-	id: Number,
-	nume: String,
-	idFac: Number
-});
-
-const SpecSchema = new mongoose.Schema({
-	id: Number,
-	nume: String,
-	idDep: Number
-});
-
-const GrupeSchema = new mongoose.Schema({
-	cod: Number,
-	nSemigrupe: Number,
-	nStudenti: Number,
-	an: Number,
-	idSpec: Number
-});
-
-const MaterieSchema = new mongoose.Schema({
-	id: Number,
-	nume: String,
-	curs: Boolean,
-	laborator: Boolean,
-	seminar: Boolean,
-	proiect: Boolean,
-	idProfesor: Number,
-	idGrupa: [String]
-});
-const ProfSchema = new mongoose.Schema({
-	id: Number,
-	nume: String,
-	idMaterii: [Number],
-});
-const OraSchema = new mongoose.Schema({
-	tip: Number,
-	Materie: [MaterieSchema],
-	idSala: Number,
-	oraInceput: Number,
-	oraSf: Number,
-
-});
-const ZiSchema = new mongoose.Schema({
-	ora1: OraSchema, // 9 - 11
-	ora2: OraSchema, // 11 - 13
-	ora3: OraSchema, // 13 -15
-	ora4: OraSchema, // 15 - 17
-	ora5: OraSchema, // 17 - 19
-});
-const OrarSchema = new mongoose.Schema({
-	grupa: Number,
-	luni: ZiSchema,
-	marti: ZiSchema,
-	miercuri: ZiSchema,
-	joi: ZiSchema,
-	vineri: ZiSchema,
-});
-
-//set the schemas
-const users = mongoose.model('users', UserSchema);
-const sali = mongoose.model('sali', SaliSchema, "sali");
-const facultati = mongoose.model('facultate', FacSchema, 'facultati');
-const departamente = mongoose.model('departament', DepSchema, 'departamente');
-const specializari = mongoose.model('specializare', SpecSchema, 'specializari');
-const grupe = mongoose.model('grupa', GrupeSchema, 'grupe');
-const materii = mongoose.model('materie', MaterieSchema, 'materii');
-const profi = mongoose.model('prof', ProfSchema, 'profi');
-const ore = mongoose.model('ora', OraSchema, 'ore');
-const zile = mongoose.model('zi', ZiSchema, 'zile');
-const orare = mongoose.model('orar', OrarSchema, 'orare');
+const SaliSchema = require("../schemas.js").SaliSchema;
 
 async function getUser(username, password) {
 	return await users.findOne({ username: username, pass: password });
@@ -152,7 +62,6 @@ router.post("/auth", function (request, response) {
 		let CurrentUser = getUser(username, password);
 
 		CurrentUser.then((user) => {
-			console.log(user);
 			if (user != null) {
 				request.session.loggedin = true;
 				request.session.username = username;
@@ -175,7 +84,6 @@ router.get("/home", function (request, response) {
 			rooms.forEach(e => {
 				e.cod = codSala(e);
 			});
-			console.log("Sali: " + rooms);
 			response.render("home", { sali: rooms, name: request.session.username });
 		});
 	} else {

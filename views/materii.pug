@@ -1,41 +1,38 @@
 extends layout 
 
 block content
-    .container
-        .row 
-            .col
-                if materii == null 
-                    h2 Acces denied
-                else
-                    table.table.table-striped
-                        thead 
-                            tr 
-                                th(scope="col") ID
-                                th(scope="col") Nume
-                                th(scope="col") C
-                                th(scope="col") L
-                                th(scope="col") S
-                                th(scope="col") P
-                                th(scope="col") ID Prof 
-                                th(scope="col") Grupe
-                        tbody 
-                            each materie in materii
-                                tr 
-                                    th(scope="row") #{materie.id}
-                                    td #{materie.nume}
-                                    td
-                                        .form-check
-                                            input.form-check-input(type="checkbox" disabled checked=materie.curs)
-                                    td
-                                        .form-check
-                                            input.form-check-input(type="checkbox" disabled checked=materie.laborator)
-                                    td
-                                        .form-check
-                                            input.form-check-input(type="checkbox" disabled checked=materie.seminar)
-                                    td
-                                        .form-check
-                                            input.form-check-input(type="checkbox" disabled checked=materie.proiect)
-                                    td #{materie._doc.prof}
-                                    td
-                                        each grupa in materie.idGrupa
-                                            a.btn.btn-outline-secondary.m-1(href=`/materii/grupa/cod=${grupa}`) #{grupa} &nbsp;
+    if materii == null 
+        h2 Acces denied
+    else
+        table.table.table-striped
+            thead 
+                tr 
+                    th(scope="col") ID
+                    th(scope="col") Nume
+                    th(scope="col") C
+                    th(scope="col") L
+                    th(scope="col") S
+                    th(scope="col") P
+                    th(scope="col") ID Prof 
+                    th(scope="col") Grupe
+            tbody 
+                each materie in materii
+                    tr 
+                        th(scope="row") #{materie.id}
+                        td #{materie.nume}
+                        td
+                            .form-check
+                                input.form-check-input(type="checkbox" disabled checked=materie.curs)
+                        td
+                            .form-check
+                                input.form-check-input(type="checkbox" disabled checked=materie.laborator)
+                        td
+                            .form-check
+                                input.form-check-input(type="checkbox" disabled checked=materie.seminar)
+                        td
+                            .form-check
+                                input.form-check-input(type="checkbox" disabled checked=materie.proiect)
+                        td #{materie._doc.prof}
+                        td
+                            each grupa in materie.idGrupa
+                                a.btn.btn-outline-secondary.m-1(href=`/materii/grupa/cod=${grupa}`) #{grupa} &nbsp;

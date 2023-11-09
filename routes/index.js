@@ -91,9 +91,21 @@ router.get("/home", function (request, response) {
 	}
 });
 
+
+const profi = require('../models.js').profi;
+
+async function getProfi() {
+	return await profi.find({});
+}
+
 router.get("/insertData", function (req, res) {
 	if (req.session.loggedin) {
-		res.render("insert");
+		let cursor = getProfi();
+		cursor.then((data) => {
+			console.log(data);
+
+			res.render("insert", { 'profi': data });
+		});
 	} else {
 		res.render('index', { redirected: true, title: 'Orar-app' });
 	}
@@ -113,5 +125,31 @@ router.post('/insertSala', function (req, res) {
 		res.render('index', { redirected: true, title: 'Orar-app' });
 	}
 });
+
+// cauta grupa
+const grupe = require('../models.js').grupe;
+
+async function cautaGrupa(q) {
+	if (q == '') {
+		return await grupe.find({});
+	} else {
+		return await grupe.find({ cod: { $regex: '.*' + q + '.*' } });
+	}
+}
+///grupa/cod=:cod
+router.get('/search/q=:q', function (req, res, next) {
+	const q = req.params.q || '1';
+
+	let cursor = cautaGrupa(q);
+	cursor.then((results) => {
+		res.send(results);
+	});
+});
+
+
+router.get('/search/q=', function (req, res, next) {
+	res.send(null);
+});
+
 
 module.exports = router;

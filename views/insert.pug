@@ -61,7 +61,7 @@ block content
                             label(for ="ID") ID:
                         .form-floating.m-4
                             input.form-control#numeMaterie(type="text")
-                            label.col-form-label(for="numeMaterie") Nume:
+                            label.col-form-label(for="numeMaterie") Nume materie:
                         .form-check.form-check-inline.m-3
                             input.form-check-input#C(type="checkbox" value="C")
                             label.form-check-label(for ="C") C
@@ -76,14 +76,19 @@ block content
                             label.form-check-label(for ="P") P
                         .form-floating.m-4
                             select.form-select#idProf
-                                option(value="1") Ursan Bogdan-Gabriel
+                                if profi != null 
+                                    each p in profi
+                                        option(value=p.id) #{p.nume}
+                                //option(value="1") Ursan Bogdan-Gabriel
                             label.col-form-label(for="numeMaterie") Profesor:
                         .form-floating.m-4
-                            input.form-control#idGrupe(type="search")
+                            input.form-control.rounded-0.rounded-top#idGrupe(type="search")
                             label.col-form-label(for="idGrupe") Grupe:
+                            .container.border.bt-none.rounded-bottom.p-2#results
+
                         .form-grop.row
                             .col-6
-                                button.btn.btn-primary.m-20(type="submit" id="iMat") Isereaza materie
+                                button.btn.btn-primary.m-2(type="submit" id="iMat") Isereaza materie
                                 button.btn.btn-outline-secondary(type="reset" id="rMat") Reset
                                 
     script(src="javascripts/script.js")

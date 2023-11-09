@@ -48,8 +48,63 @@ function validateInput(id) {
         return false
     }
 }
-document.getElementById('rSala').addEventListener('click',resetSala);
+document.getElementById('rSala').addEventListener('click', resetSala);
 
-function resetSala(){
+function resetSala() {
     genCode();
 }
+
+const searchInput = document.querySelector('#idGrupe');
+
+const results_body = document.querySelector('#results');
+
+load_data('1');
+
+function load_data(query = '') {
+    const request = new XMLHttpRequest();
+
+
+    request.open('GET', `/search/q=${query}`);
+
+
+    request.onload = () => {
+
+        if (request.responseText != '') {
+
+
+            const results = JSON.parse(request.responseText);
+
+            let html = '';
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    html += `
+                    <button type="button" class="btn btn-outline-secondary m-1">` + result.cod + `</button>
+                `;
+                });
+            }
+            else {
+                html += `
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Nu am gasit nimic.
+            </div>
+            `;
+            }
+
+            results_body.innerHTML = html;
+        } else {
+            load_data('1');
+        }
+
+    };
+
+    request.send();
+}
+
+searchInput.addEventListener('input', () => {
+
+    const query = searchInput.value;
+
+    load_data(query);
+
+});

@@ -36,7 +36,7 @@ const SpecSchema = new mongoose.Schema({
 });
 
 const GrupeSchema = new mongoose.Schema({
-	cod: Number,
+	cod: String,
 	nSemigrupe: Number,
 	nStudenti: Number,
 	an: Number,
@@ -74,7 +74,7 @@ const ZiSchema = new mongoose.Schema({
 	ora5: OraSchema, // 17 - 19
 });
 const OrarSchema = new mongoose.Schema({
-	grupa: Number,
+	grupa: String,
 	luni: ZiSchema,
 	marti: ZiSchema,
 	miercuri: ZiSchema,

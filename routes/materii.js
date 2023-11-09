@@ -53,3 +53,5 @@ router.get('/grupa/cod=:cod', function (req, res, next) {
         res.render('grupa', { grupa: data });
     });
 });
+
+module.exports = router;

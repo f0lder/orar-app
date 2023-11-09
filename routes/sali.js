@@ -42,6 +42,46 @@ router.get("/", function (request, response) {
     }
 });
 
-//! The post method is in index.js
+async function deleteDoc(id) {
+    return await sali.findByIdAndDelete(id);
+}
+
+router.get('/delete/id=:id', function (req, res, nect) {
+    const id = req.params.id;
+
+    let cursor = deleteDoc(id);
+    cursor.then((response) => {
+        res.redirect('/sali');
+    });
+});
+
+router.post('/insertSala', function (req, res) {
+	if (req.session.loggedin) {
+		//TODO check for login
+		//TODO add mongoose create doc and save doc
+
+		insertSala(req.body.corp, req.body.etaj, req.body.numar, req.body.capacitate).then((p) => {
+			console.log("A doc was inserted!");
+			res.redirect('/home');
+		});
+	} else {
+		res.render('index', { redirected: true, title: 'Orar-app' });
+	}
+});
+
+const SaliSchema = require('../schemas').SaliSchema;
+
+async function insertSala(corp, etaj, numar, capacitate) {
+
+	const Sala = mongoose.model('sali', SaliSchema);
+	const S = new Sala({
+		corp: corp,
+		etaj: etaj,
+		numar: numar,
+		capacitate: capacitate
+	});
+	console.dir(S);
+	await S.save();
+}
 
 module.exports = router;

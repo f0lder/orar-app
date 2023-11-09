@@ -53,19 +53,3 @@ router.get('/grupa/cod=:cod', function (req, res, next) {
         res.render('grupa', { grupa: data });
     });
 });
-
-
-
-//exemple data
-d = {
-    "_id": "654646055f4292c0d3510ca3",
-    "id": 1,
-    "nume": "Proiectare software",
-    "curs": true,
-    "laborator": false,
-    "seminar": false,
-    "proiect": true,
-    "idProfesor": 1,
-    "idGrupa": ["1241", "1231"]
-}
-module.exports = router;

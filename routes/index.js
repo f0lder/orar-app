@@ -79,28 +79,33 @@ router.get("/home", function (request, response) {
 });
 
 
+const grupe = require('../models.js').grupe;
 const profi = require('../models.js').profi;
 
 async function getProfi() {
 	return await profi.find({});
 }
+async function getGrupe() {
+	return await grupe.find({});
+}
 
 router.get("/insertData", function (req, res) {
 	if (req.session.loggedin) {
-		let cursor = getProfi();
-		cursor.then((data) => {
-			console.log(data);
 
-			res.render("insert", { 'profi': data });
+		let promisies = [
+			Promise.resolve(getProfi()),
+			Promise.resolve(getGrupe())
+		];
+
+		Promise.allSettled(promisies).then((results) => {
+			res.render('insert',{'profi': results[0].value,'grupe': results[1].value});
 		});
+		
 	} else {
 		res.render('index', { redirected: true, title: 'Orar-app' });
 	}
 });
 
-
-// cauta grupa
-const grupe = require('../models.js').grupe;
 
 async function cautaGrupa(q) {
 	if (q == '') {

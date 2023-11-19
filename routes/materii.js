@@ -41,6 +41,7 @@ router.get('/', function (req, res, next) {
 
 
 //TODO move this to grupe.js
+
 async function getGrupaByCode(code) {
     return await grupe.findOne({ "cod": code });
 }

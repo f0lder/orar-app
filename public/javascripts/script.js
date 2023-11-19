@@ -1,6 +1,13 @@
 
 //TODO move tihs to back-end for lite client
 
+$(document).ready(function() {
+    $('.multiple-sel').select2({
+        placeholder: "Alege grupe",
+        them: "bootstrap"
+    });
+});
+
 document.getElementById("corp").addEventListener('input', genCode);
 document.getElementById("etaj").addEventListener('input', genCode);
 document.getElementById("numar").addEventListener('input', genCode);
@@ -54,7 +61,7 @@ function resetSala() {
     genCode();
 }
 
-document.getElementById('idGrupe').addEventListener('input', search);
+//document.getElementById('idGrupe').addEventListener('input', search);
 
 function search() {
     const searchTerm = $('#idGrupe').val();

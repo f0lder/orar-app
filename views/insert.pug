@@ -81,15 +81,17 @@ block content
                                         option(value=p.id) #{p.nume}
                                 //option(value="1") Ursan Bogdan-Gabriel
                             label.col-form-label(for="numeMaterie") Profesor
-                        .form-floating.m-4
-                            input.form-control.rounded-0.rounded-top#idGrupe(type="search")
-                            label.col-form-label(for="idGrupe") Grupe
-                            .container.border.bt-none.rounded-bottom.p-2#add-data
+                        .form-group.m-4
+                            //input.form-control.rounded-0.rounded-top#idGrupe(type="search")
+                            select.multiple-sel.form-control.border#idGrupe(multiple)
+                                if grupe != null 
+                                    each g in grupe
+                                        option #{g.cod}
+                            //.container.border.bt-none.rounded-bottom.p-2#add-data
                             
                         .form-grop.row
                             .col-6
                                 button.btn.btn-primary.m-2(type="submit" id="iMat") Isereaza materie
                                 button.btn.btn-outline-secondary(type="reset" id="rMat") Reset
                                 
-    script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
     script(src="javascripts/script.js")

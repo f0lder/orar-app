@@ -1,10 +1,10 @@
 
 //TODO move tihs to back-end for lite client
 
-document.getElementById("corp").addEventListener('change', genCode);
-document.getElementById("etaj").addEventListener('change', genCode);
-document.getElementById("numar").addEventListener('change', genCode);
-document.getElementById("capacitate").addEventListener('change', genCode);
+document.getElementById("corp").addEventListener('input', genCode);
+document.getElementById("etaj").addEventListener('input', genCode);
+document.getElementById("numar").addEventListener('input', genCode);
+document.getElementById("capacitate").addEventListener('input', genCode);
 
 
 //exec on page load?
@@ -54,57 +54,26 @@ function resetSala() {
     genCode();
 }
 
-const searchInput = document.querySelector('#idGrupe');
+document.getElementById('idGrupe').addEventListener('input', search);
 
-const results_body = document.querySelector('#results');
-
-load_data('1');
-
-function load_data(query = '') {
-    const request = new XMLHttpRequest();
-
-
-    request.open('GET', `/search/q=${query}`);
-
-
-    request.onload = () => {
-
-        if (request.responseText != '') {
-
-
-            const results = JSON.parse(request.responseText);
-
-            let html = '';
-
-            if (results.length > 0) {
-                results.forEach(result => {
-                    html += `
-                    <button type="button" class="btn btn-outline-secondary m-1">` + result.cod + `</button>
-                `;
-                });
-            }
-            else {
-                html += `
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Nu am gasit nimic.
-            </div>
-            `;
-            }
-
-            results_body.innerHTML = html;
-        } else {
-            load_data('1');
-        }
-
-    };
-
-    request.send();
+function search() {
+    const searchTerm = $('#idGrupe').val();
+    $.get(`/search/q=${searchTerm}`, (data) => {
+        displayData(data);
+    })
 }
 
-searchInput.addEventListener('input', () => {
+function displayData(data) {
 
-    const query = searchInput.value;
+    const resultsContainer = $('#add-data');
 
-    load_data(query);
+    resultsContainer.empty();
 
-});
+    if (data.length == 0) {
+        resultsContainer.text('No data found!');
+    } else{
+        data.forEach(e => {
+            resultsContainer.append(`<button type="button" class="btn btn-outline-secondary m-1"> ${e.cod}</button>`)
+        });
+    }
+}

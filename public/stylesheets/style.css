@@ -6,3 +6,9 @@
     cursor: pointer;
     color: red;
 }
+.dele svg{
+    color: black;
+}
+.dele:hover svg{
+    color: red;
+}

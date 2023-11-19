@@ -1,7 +1,7 @@
-document.getElementById("corp").addEventListener('change', genCode);
-document.getElementById("etaj").addEventListener('change', genCode);
-document.getElementById("numar").addEventListener('change', genCode);
-document.getElementById("capacitate").addEventListener('change', genCode);
+document.getElementById("corp").addEventListener('input', genCode);
+document.getElementById("etaj").addEventListener('input', genCode);
+document.getElementById("numar").addEventListener('input', genCode);
+document.getElementById("capacitate").addEventListener('input', genCode);
 
 
 //exec on page load?
@@ -42,7 +42,7 @@ function validateInput(id) {
         document.getElementById(id).classList.remove("is-valid");
         document.getElementById(id).classList.add("is-invalid");
         document.getElementById('iSala').setAttribute('disabled', 'true');
-        return false
+        return false;
     }
 }
 document.getElementById('rSala').addEventListener('click',resetSala);

@@ -1,6 +1,7 @@
 extends layout 
 
 block content
+    h2#add-data
     if materii == null 
         h2 Acces denied
     else
@@ -36,3 +37,5 @@ block content
                         td
                             each grupa in materie.idGrupa
                                 a.btn.btn-outline-secondary.m-1(href=`/materii/grupa/cod=${grupa}`) #{grupa} &nbsp;
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
+    script(src="javascripts/materii.js")

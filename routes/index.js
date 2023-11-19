@@ -109,20 +109,21 @@ async function cautaGrupa(q) {
 		return await grupe.find({ cod: { $regex: '.*' + q + '.*' } });
 	}
 }
-///grupa/cod=:cod
+
+
 router.get('/search/q=:q', function (req, res, next) {
-	const q = req.params.q || '1';
+
+	const q = req.params.q;
 
 	let cursor = cautaGrupa(q);
 	cursor.then((results) => {
-		res.send(results);
+		res.json(results);
 	});
-});
 
+});
 
 router.get('/search/q=', function (req, res, next) {
 	res.send(null);
 });
-
 
 module.exports = router;

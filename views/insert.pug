@@ -58,10 +58,10 @@ block content
                 form(action="insertMaterie" method="post")
                         .form-floating.m-4
                             input.form-control#ID(type="text" readonly)
-                            label(for ="ID") ID:
+                            label(for ="ID") ID
                         .form-floating.m-4
                             input.form-control#numeMaterie(type="text")
-                            label.col-form-label(for="numeMaterie") Nume materie:
+                            label.col-form-label(for="numeMaterie") Nume materie
                         .form-check.form-check-inline.m-3
                             input.form-check-input#C(type="checkbox" value="C")
                             label.form-check-label(for ="C") C
@@ -80,15 +80,16 @@ block content
                                     each p in profi
                                         option(value=p.id) #{p.nume}
                                 //option(value="1") Ursan Bogdan-Gabriel
-                            label.col-form-label(for="numeMaterie") Profesor:
+                            label.col-form-label(for="numeMaterie") Profesor
                         .form-floating.m-4
                             input.form-control.rounded-0.rounded-top#idGrupe(type="search")
-                            label.col-form-label(for="idGrupe") Grupe:
-                            .container.border.bt-none.rounded-bottom.p-2#results
-
+                            label.col-form-label(for="idGrupe") Grupe
+                            .container.border.bt-none.rounded-bottom.p-2#add-data
+                            
                         .form-grop.row
                             .col-6
                                 button.btn.btn-primary.m-2(type="submit" id="iMat") Isereaza materie
                                 button.btn.btn-outline-secondary(type="reset" id="rMat") Reset
                                 
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
     script(src="javascripts/script.js")

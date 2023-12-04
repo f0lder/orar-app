@@ -47,6 +47,11 @@ function validateInput(id) {
 }
 document.getElementById('rSala').addEventListener('click',resetSala);
 
+
 function resetSala(){
     genCode();
 }
+
+$('#exampleModal').on('shown.bs.modal', function () {
+    $('#modelBtn').trigger('focus')
+})

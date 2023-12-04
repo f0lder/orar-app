@@ -33,6 +33,14 @@ router.get('/', function (req, res, next) {
                 });
             });
         });
+
+
+        let Promises =[
+            Promise.resolve(getData()),
+            Promise.resolve(getProfByID()),
+        ]
+
+
     } else {
         res.render('index', { redirected: true, title: "Orar-app" });
     }

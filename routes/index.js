@@ -98,9 +98,9 @@ router.get("/insertData", function (req, res) {
 		];
 
 		Promise.allSettled(promisies).then((results) => {
-			res.render('insert',{'profi': results[0].value,'grupe': results[1].value});
+			res.render('insert', { 'profi': results[0].value, 'grupe': results[1].value });
 		});
-		
+
 	} else {
 		res.render('index', { redirected: true, title: 'Orar-app' });
 	}

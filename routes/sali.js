@@ -46,7 +46,7 @@ async function deleteDoc(id) {
     return await sali.findByIdAndDelete(id);
 }
 
-router.get('/delete/id=:id', function (req, res, nect) {
+router.get('/delete/id=:id', function (req, res, next) {
     const id = req.params.id;
 
     let cursor = deleteDoc(id);

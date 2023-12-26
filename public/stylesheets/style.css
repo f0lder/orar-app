@@ -12,3 +12,7 @@
 .dele:hover svg{
     color: red;
 }
+.sortable-chosen{
+    background-color: gray;
+    font-size: larger;
+}

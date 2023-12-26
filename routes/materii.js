@@ -40,7 +40,6 @@ router.get('/', function (req, res, next) {
             Promise.resolve(getProfByID()),
         ]
 
-
     } else {
         res.render('index', { redirected: true, title: "Orar-app" });
     }

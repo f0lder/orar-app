@@ -10,6 +10,7 @@ var usersRouter = require("./routes/users");
 var saliRouter = require("./routes/sali");
 var MatRouter = require("./routes/materii");
 var UpdateRouter = require("./routes/update");
+var OrarRouter = require("./routes/orar");
 const session = require("express-session");
 
 var app = express();
@@ -37,7 +38,7 @@ app.use("/users", usersRouter);
 app.use("/sali",saliRouter);
 app.use("/materii",MatRouter);
 app.use("/update",UpdateRouter);
-
+app.use("/orar",OrarRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

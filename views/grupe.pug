@@ -1,0 +1,48 @@
+extends layout
+
+block content
+    //bootstrap cards
+    .contianer
+        .row
+            .col-lg-8.m-auto
+                table.table.table-striped
+                    thead 
+                        tr 
+                            th(scope="col") Cod
+                            th(scope="col") Numar de semigrupe
+                            th(scope="col") Numar de studenti
+                            th(scope="col") Anul
+                    tbody 
+                        each grupa in grupe
+                            tr 
+                                th(scope="row") #{grupa.cod}
+                                td #{grupa.nSemigrupe}
+                                td #{grupa.nStudenti}
+                                td #{grupa.an}
+        .row
+            .col-lg-5.col-md-10.m-auto
+                form(action="grupe/insertGrupa", method="post")
+                    //Trebuie sa alegem facultatea 
+                    // Departamentul
+                    // specializarea
+                    // cand se apasa pe una din celelalte se schimba si datele din celelalte
+                    // sau doar scrie codul direct
+                    .form-floating.m-4 
+                        input.form-control#cod(type="number" name="cod" placeholder="Codul grupei" required)
+                        label(for="cod") Codul grupei
+                    .form-floating.m-4
+                        input.form-control#nSemigrupe(type="number" name="nSemigrupe" placeholder="Numarul de semigrupe" required)
+                        label(for="nSemigrupe") Numarul de semigrupe
+                    .form-floating.m-4
+                        input.form-control#nStudenti(type="number" name="nStudenti" placeholder="Numarul de studenti" required)
+                        label(for="nStudenti") Numarul de studenti
+                    .form-floating.m-4
+                        select.form-control#an(name="an")
+                            option(value='1') 1
+                            option(value='2') 2
+                            option(value='3') 3
+                            option(value='4') 4
+                        label(for="an") Anul
+                    .form-group.m-4 
+                        button.btn.btn-outline-primary.m-2(type="submit" ) Iserează grupa
+                        button.btn.btn-outline-secondary.m-2(type="reset" ) Reset

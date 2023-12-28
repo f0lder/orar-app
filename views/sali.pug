@@ -4,49 +4,41 @@ extends layout
 block content
     //Tot ce este legat de sati
     .container.row.border.m-auto.mt-4
-        .col
+        .col-lg-3
             h2.display-5 Insereaza sala
             form(action="/sali/insertSala" method="post")
-                .form-group.row.m-1.mt-4
+                .form-floating.m-3
                     //Corp A,b,c..
-                    .col-4
-                        label.col-form-label(for="corp") Corp:
-                    .col
-                        select.form-select(id="corp" name="corp")
-                            option A
-                            option B
-                            option C
-                            option D
-                .form-group.row.m-1.mt-4
+                    select.form-select(id="corp" name="corp")
+                        option A
+                        option B
+                        option C
+                        option D
+                    label.col-form-label(for="corp") Corp
+                .form-floating.m-3
                     //etaj
-                    .col-4
-                        label.col-form-label(for="etaj") Etaj:
-                    .col
-                        select.form-select(id="etaj" name="etaj")
-                            option(value='0') P
-                            option 1
-                            option 2
-                            option 3
-                .form-group.row.m-1.mt-4
+                    select.form-select(id="etaj" name="etaj")
+                        option(value='0') P
+                        option 1
+                        option 2
+                        option 3
+                    label.col-form-label(for="etaj") Etaj
+                .form-floating.m-3
                     //numar
-                    .col-4
-                        label.col-form-label(for="numar") Numar:
-                    .col
-                        input.form-control.is-invalid(id="numar" type="number" name="numar")
-                        .invalid-feedback Nu poate fi mai mic decat 0!
-                .form-group.row.m-1.mt-4
+                    input.form-control.is-invalid(id="numar" type="number" name="numar")
+                    label.col-form-label(for="numar") Numar
+                    .invalid-feedback Nu poate fi mai mic decat 0!
+                .form-floating.m-3
                     //capacitate
-                    .col-4
-                        label.col-form-label(for="capacitate") Capacitate:
-                    .col
-                        input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
-                        .invalid-feedback Nu poate fi mai mic decat 0!
-                .form-group.row.m-1.mt-4
+                    
+                    input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
+                    label.col-form-label(for="capacitate") Capacitate
+                    .invalid-feedback Nu poate fi mai mic decat 0!
+                .form-floating.m-3
                     //cod
-                    .col-4
-                        label.col-form-label(for="cod") Cod Generat:
-                    .col
-                        input.form-control(id="cod" type="text" readonly value="AP12")
+                    
+                    input.form-control(id="cod" type="text" readonly value="AP12")
+                    label.col-form-label(for="cod") Cod Generat
                 .form-grop.row.p-3
                     .col
                         button.btn.btn-primary.m-20(type="submit" id="iSala") Insereaza sala
@@ -56,7 +48,7 @@ block content
             h2 You are not allowed to see this resource or it does not exist.
         else
             .col
-                table.table.table-striped
+                table.table.table-striped.tabel-sali
                     thead
                         tr
                             th(scope="col") COD

@@ -16,3 +16,16 @@
     background-color: gray;
     font-size: larger;
 }
+.tabel-sali{
+    height: 100%;
+}
+.tabel-sali td,.tabel-sali th{
+    text-align: center;
+    vertical-align: middle;
+    font-size: larger;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -4,6 +4,11 @@ const mongoose = require("mongoose");
 
 var router = express.Router();
 
+const grupe = require('../models.js').grupe;
+const profi = require('../models.js').profi;
+const users = require("../models.js").users;
+const sali = require("../models.js").sali;
+const materii = require("../models.js").materii;
 /* GET home page. */
 router.get("/", function (req, res, next) {
 	res.render("index", { title: "Orar-app" });
@@ -17,10 +22,6 @@ mongoose
 	.then(() => console.log("MongoDB connected"))
 	.catch(err => console.log(err));
 
-
-const users = require("../models.js").users;
-const sali = require("../models.js").sali;
-
 const SaliSchema = require("../schemas.js").SaliSchema;
 
 async function getUser(username, password) {
@@ -28,6 +29,10 @@ async function getUser(username, password) {
 }
 async function getSali() {
 	return await sali.find({});
+}
+
+async function getMaxIdMaterii() {	
+	return await materii.find({}).sort({id: -1}).limit(1);
 }
 
 function codSala(sala) {
@@ -78,9 +83,28 @@ router.get("/home", function (request, response) {
 	}
 });
 
+const MaterieSchema = require("../schemas.js").MaterieSchema;
 
-const grupe = require('../models.js').grupe;
-const profi = require('../models.js').profi;
+router.post("/insertMaterie", async function (req, res) {
+	if (req.session.loggedin) {
+
+		const Materie = new materii({
+			id: 2,
+			nume: req.body.nume,
+			curs: req.body.Curs == 'on',
+			laborator: req.body.Laborator == 'on',
+			seminar: req.body.Seminar == 'on',
+			proiect: req.body.Proiect == 'on',
+			idProfesor: req.body.prof,
+			idGrupa: req.body.grupe
+		});
+		await Materie.save().then(() => {
+			res.redirect("/materii");
+		}).catch((err) => {
+			console.log(err)
+		});
+	}
+});
 
 async function getProfi() {
 	return await profi.find({});
@@ -94,11 +118,12 @@ router.get("/insertData", function (req, res) {
 
 		let promisies = [
 			Promise.resolve(getProfi()),
-			Promise.resolve(getGrupe())
+			Promise.resolve(getGrupe()),
+			Promise.resolve(getMaxIdMaterii())
 		];
 
 		Promise.allSettled(promisies).then((results) => {
-			res.render('insert', { 'profi': results[0].value, 'grupe': results[1].value });
+			res.render('insert', { 'profi': results[0].value, 'grupe': results[1].value, 'maxID': results[2].value[0].id });
 		});
 
 	} else {

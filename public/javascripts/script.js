@@ -4,7 +4,7 @@
 $(document).ready(function() {
     $('.multiple-sel').select2({
         placeholder: "Alege grupe",
-        them: "bootstrap"
+        theme: 'bootstrap-5'
     });
 });
 
@@ -52,35 +52,11 @@ function validateInput(id) {
         document.getElementById(id).classList.remove("is-valid");
         document.getElementById(id).classList.add("is-invalid");
         document.getElementById('iSala').setAttribute('disabled', 'true');
-        return false
+        return false;
     }
 }
 document.getElementById('rSala').addEventListener('click', resetSala);
 
 function resetSala() {
     genCode();
-}
-
-//document.getElementById('idGrupe').addEventListener('input', search);
-
-function search() {
-    const searchTerm = $('#idGrupe').val();
-    $.get(`/search/q=${searchTerm}`, (data) => {
-        displayData(data);
-    })
-}
-
-function displayData(data) {
-
-    const resultsContainer = $('#add-data');
-
-    resultsContainer.empty();
-
-    if (data.length == 0) {
-        resultsContainer.text('No data found!');
-    } else{
-        data.forEach(e => {
-            resultsContainer.append(`<button type="button" class="btn btn-outline-secondary m-1"> ${e.cod}</button>`)
-        });
-    }
 }

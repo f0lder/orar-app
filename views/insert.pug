@@ -57,39 +57,35 @@ block content
                 h2.display-4 Insereaza materie
                 form(action="insertMaterie" method="post")
                         .form-floating.m-4
-                            input.form-control#ID(type="text" readonly)
+                            input.form-control#ID(type="text" readonly value =maxID+1 )
                             label(for ="ID") ID
                         .form-floating.m-4
-                            input.form-control#numeMaterie(type="text")
+                            input.form-control#numeMaterie(type="text" name="nume")
                             label.col-form-label(for="numeMaterie") Nume materie
                         .form-check.form-check-inline.m-3
-                            input.form-check-input#C(type="checkbox" value="C")
+                            input.form-check-input#C(type="checkbox" name="Curs")
                             label.form-check-label(for ="C") C
                         .form-check.form-check-inline.m-3
-                            input.form-check-input#L(type="checkbox" value="L")
+                            input.form-check-input#L(type="checkbox" name="Laborator")
                             label.form-check-label(for ="L") L
                         .form-check.form-check-inline.m-3
-                            input.form-check-input#S(type="checkbox" value="S")
+                            input.form-check-input#S(type="checkbox" name="Seminar")
                             label.form-check-label(for ="S") S
                         .form-check.form-check-inline.m-3
-                            input.form-check-input#P(type="checkbox" value="P")
+                            input.form-check-input#P(type="checkbox" name="Proiect")
                             label.form-check-label(for ="P") P
                         .form-floating.m-4
-                            select.form-select#idProf
+                            select.form-select#idProf(name="prof")
                                 if profi != null 
                                     each p in profi
                                         option(value=p.id) #{p.nume}
-                                //option(value="1") Ursan Bogdan-Gabriel
                             label.col-form-label(for="numeMaterie") Profesor
                         .form-group.m-4
-                            //input.form-control.rounded-0.rounded-top#idGrupe(type="search")
-                            select.multiple-sel.form-control.border#idGrupe(multiple)
+                            select.multiple-sel.form-control#idGrupe(multiple name="grupe")
                                 if grupe != null 
                                     each g in grupe
-                                        option #{g.cod}
-                            //.container.border.bt-none.rounded-bottom.p-2#add-data
-                            
-                        .form-grop.row
+                                        option #{g.cod} 
+                        .form-group.row
                             .col-6
                                 button.btn.btn-primary.m-2(type="submit" id="iMat") Isereaza materie
                                 button.btn.btn-outline-secondary(type="reset" id="rMat") Reset

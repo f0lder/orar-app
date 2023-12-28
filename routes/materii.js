@@ -47,19 +47,4 @@ router.get('/', function (req, res, next) {
 });
 
 
-//TODO move this to grupe.js
-
-async function getGrupaByCode(code) {
-    return await grupe.findOne({ "cod": code });
-}
-
-router.get('/grupa/cod=:cod', function (req, res, next) {
-    const cod = req.params.cod;
-
-    let c = getGrupaByCode(cod);
-    c.then((data) => {
-        res.render('grupa', { grupa: data });
-    });
-});
-
 module.exports = router;

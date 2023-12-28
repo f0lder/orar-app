@@ -22,8 +22,6 @@ mongoose
 	.then(() => console.log("MongoDB connected"))
 	.catch(err => console.log(err));
 
-const SaliSchema = require("../schemas.js").SaliSchema;
-
 async function getUser(username, password) {
 	return await users.findOne({ username: username, pass: password });
 }
@@ -83,28 +81,6 @@ router.get("/home", function (request, response) {
 	}
 });
 
-const MaterieSchema = require("../schemas.js").MaterieSchema;
-
-router.post("/insertMaterie", async function (req, res) {
-	if (req.session.loggedin) {
-
-		const Materie = new materii({
-			id: 2,
-			nume: req.body.nume,
-			curs: req.body.Curs == 'on',
-			laborator: req.body.Laborator == 'on',
-			seminar: req.body.Seminar == 'on',
-			proiect: req.body.Proiect == 'on',
-			idProfesor: req.body.prof,
-			idGrupa: req.body.grupe
-		});
-		await Materie.save().then(() => {
-			res.redirect("/materii");
-		}).catch((err) => {
-			console.log(err)
-		});
-	}
-});
 
 async function getProfi() {
 	return await profi.find({});

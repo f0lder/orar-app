@@ -1,6 +1,5 @@
 var express = require("express");
 const mongoose = require("mongoose");
-const { all } = require(".");
 
 var router = express.Router();
 
@@ -8,43 +7,50 @@ const materii = require("../models").materii;
 const profi = require("../models.js").profi;
 const grupe = require("../models.js").grupe;
 
-async function getData() {
-    return await materii.find({});
-}
 
-function getProfByID(profID) {
+async function getProfByID(profID) {
     return profi.findOne({ "id": profID });
 }
 
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res) {
     if (req.session.loggedin) {
-        var i = 0;
-        let c = getData();
-        c.then((data) => {
-            data.forEach(element => {
-                let p = getProfByID(element.idProfesor);
-                p.then((d) => {
-                    //console.log(d);
-                    element._doc.prof = d._doc.nume;
-                    i++;
-                    if (i == data.length) {
-                        res.render('materii', { materii: data });
-                    }
-                });
-            });
-        });
-
-
-        let Promises =[
-            Promise.resolve(getData()),
-            Promise.resolve(getProfByID()),
-        ]
-
+        try {
+            let data = await materii.find({});
+            for (let e of data) {
+                let d = await getProfByID(e.idProfesor);
+                e._doc.prof = d._doc.nume;
+            }
+            let maxID = await materii.find({}).sort({ id: -1 }).limit(1);
+            let allProfi = await profi.find({});
+            let allGrupe = await grupe.find({});
+            res.render('materii', { materii: data , maxID: maxID[0].id + 1, profi: allProfi, grupe: allGrupe});
+        }
+        catch (err) {
+            console.log(err);
+        }
     } else {
         res.render('index', { redirected: true, title: "Orar-app" });
     }
-
 });
 
+router.post("/insertMaterie", async function (req, res) {
+    if (req.session.loggedin) {
 
+        const Materie = new materii({
+            id: 2,
+            nume: req.body.nume,
+            curs: req.body.Curs == 'on',
+            laborator: req.body.Laborator == 'on',
+            seminar: req.body.Seminar == 'on',
+            proiect: req.body.Proiect == 'on',
+            idProfesor: req.body.prof,
+            idGrupa: req.body.grupe
+        });
+        await Materie.save().then(() => {
+            res.redirect("/materii");
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
+});
 module.exports = router;

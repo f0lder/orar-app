@@ -37,7 +37,7 @@ router.post("/insertMaterie", async function (req, res) {
     if (req.session.loggedin) {
 
         const Materie = new materii({
-            id: 2,
+            id: req.body.id,
             nume: req.body.nume,
             curs: req.body.Curs == 'on',
             laborator: req.body.Laborator == 'on',

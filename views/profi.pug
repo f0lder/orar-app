@@ -1,0 +1,37 @@
+extends layout
+
+block content 
+    h2 Profi
+    table.table.table.striped
+        thead 
+            tr
+                th(scope="col") ID
+                th(scope="col") Nume
+                th(scope="col") ID Materii
+        tbody 
+            each prof in profi
+                tr 
+                    th(scope="row") #{prof.id}
+                    td #{prof.nume}
+                    td
+                        each materie in prof.materii
+                            a.btn.btn-outline-secondary.m-1(href=`/materii/id=${materie.id}`) #{materie.nume} &nbsp;
+    .container
+        .row
+            .col-lg-5.col-md-10.m-auto
+                form(action="profi/insertProf", method="post")
+                    .form-floating.m-4
+                        input.form-control#ID(type="text" readonly value = maxID name="id")
+                        label(for ="ID") ID
+                    .form-floating.m-4
+                        input.form-control#numeProf(type="text" name="nume")
+                        label.col-form-label(for="numeProf") Nume profesor
+                    .form-group.m-4
+                        select.multiple-sel.form-control#idProf(name="materii" multiple)
+                                if materii != null 
+                                    each p in materii
+                                        option(value=p.id) #{p.nume}
+                    .form-group.m-4 
+                        button.btn.btn-outline-primary.m-2(type="submit" ) Iserează profesor
+                        button.btn.btn-outline-secondary.m-2(type="reset" ) Reset
+    script(src="javascripts/profi.js")

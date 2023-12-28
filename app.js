@@ -12,6 +12,7 @@ var MatRouter = require("./routes/materii");
 var UpdateRouter = require("./routes/update");
 var OrarRouter = require("./routes/orar");
 var GrupeRouter = require("./routes/grupe");
+var ProfiRouter = require("./routes/profi");
 const session = require("express-session");
 
 var app = express();
@@ -41,6 +42,7 @@ app.use("/materii", MatRouter);
 app.use("/update", UpdateRouter);
 app.use("/orar", OrarRouter);
 app.use("/grupe", GrupeRouter);
+app.use("/profi", ProfiRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

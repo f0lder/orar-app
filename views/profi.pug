@@ -14,8 +14,11 @@ block content
                     th(scope="row") #{prof.id}
                     td #{prof.nume}
                     td
-                        each materie in prof.materii
-                            a.btn.btn-outline-secondary.m-1(href=`/materii/id=${materie.id}`) #{materie.nume} &nbsp;
+                        if prof.materii.length
+                            each materie in prof.materii
+                                a.btn.btn-outline-secondary.m-1(href=`/materii/id=${materie.id}`) #{materie.nume} &nbsp;
+                        else 
+                            p.fst-italic Nu are materii
     .container
         .row
             .col-lg-5.col-md-10.m-auto
@@ -25,12 +28,16 @@ block content
                         label(for ="ID") ID
                     .form-floating.m-4
                         input.form-control#numeProf(type="text" name="nume")
-                        label.col-form-label(for="numeProf") Nume profesor
+                        label(for="numeProf") Nume profesor
                     .form-group.m-4
                         select.multiple-sel.form-control#idProf(name="materii" multiple)
                                 if materii != null 
                                     each p in materii
                                         option(value=p.id) #{p.nume}
+                    .form-group.m-4
+                        .alert.alert-warning(role="alert")
+                           | Daca alegeti o materie care este atribuita deja unui profesor, aceasta va fi atribuita noului profesor si stearsa de la cel vechi.
+
                     .form-group.m-4 
                         button.btn.btn-outline-primary.m-2(type="submit" ) Iserează profesor
                         button.btn.btn-outline-secondary.m-2(type="reset" ) Reset

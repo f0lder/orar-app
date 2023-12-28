@@ -14,10 +14,25 @@ router.get('/', async function (req, res) {
             e.materii = d;
         }
         let allMaterii = await materii.find({});
-        res.render('profi', { title: "Profesori", profi: data, materii: allMaterii });
+        let maxID = await profi.find({}).sort({ id: -1 }).limit(1);
+        res.render('profi', { title: "Profesori", profi: data, materii: allMaterii, maxID: maxID[0].id + 1 });
     } else {
         res.render('index', { redirected: true, title: "Orar-app" });
     }
 });
-
+router.post("/insertProf", async function (req, res) {
+    if (req.session.loggedin) {
+        const Prof = new profi({
+            id: req.body.id,
+            nume: req.body.nume,
+            idMaterii: req.body.materii
+        });
+        await materii.updateMany({ idProfesor: req.body.materii }, { idProfesor: req.body.id });
+        await Prof.save().then(() => {
+            res.redirect("/profi");
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
+});
 module.exports = router;

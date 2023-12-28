@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.multiple-sel').select2({
-        placeholder: "Alege grupe",
+        placeholder: "Alege materii",
         theme: 'bootstrap-5'
     });
 });

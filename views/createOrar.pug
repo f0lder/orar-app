@@ -2,25 +2,61 @@ extends layout
 
 block content 
 
-    h2 Hello from createOrar.pug
+    .d-flex.flex-row.align-self-center.m-3
+        h3.px-3 Creaza orar pentru grupa
+        .w-5
+            select.form-control#grupa(name="grupa")
+                each g in grupe
+                    option #{g.cod}
 
     //add bootstrap classes to ul with border
     .container-fluid
         .row 
-            .col
+            .col-md-5
                 ul#list1.list-group.m-4
-                    li.list-group-item.list-group-item-action.list-group-item-secondary item 1
-                    li.list-group-item.list-group-item-action.list-group-item-secondary item 2
-                    li.list-group-item.list-group-item-action.list-group-item-secondary item 3
-                    li.list-group-item.list-group-item-action.list-group-item-secondary item 4
-                    li.list-group-item.list-group-item-action.list-group-item-secondary item 5
-            .col
-                ul#list2.list-group.m-4
-                    li.list-group-item item 1
-                    li.list-group-item item 2
-                    li.list-group-item item 3
-                    li.list-group-item item 4
-                    li.list-group-item item 5
+                    li.list-group-item.list-group-item-secondary.rounded
+                        .form-floating
+                            select.form-control(name="" placeholder="")
+                                each m in materii
+                                    if m.curs == true
+                                        .row #{m.curs}
+                                    option #{m.nume}
+                            label(for="") Materie
+                    li.list-group-item.list-group-item-secondary.rounded 
+                        .row 
+                            .col 
+                                .form-floating
+                                    select.form-control(name="" placeholder="")
+                                        each m in materii
+                                            option #{m.nume}
+                                    label(for="") Materie
+                            .col
+                                .form-floating
+                                    select.form-control(name="" placeholder="")
+                                        each m in materii
+                                            option #{m.nume}
+                                    label(for="") Materie
+                    li.list-group-item.list-group-item-secondary.rounded
+                        .row
+                            .col 
+                                .form-floating
+                                    select.form-control(name="" placeholder="")
+                                        each m in materii
+                                            option #{m.nume}
+                                    label(for="") Materie
+                            .col
+                        .row
+                            .col 
+                            .col 
+                                .form-floating
+                                    select.form-control(name="" placeholder="")
+                                        each m in materii
+                                            option #{m.nume}
+                                    label(for="") Materie
+                    li.list-group-item.list-group-item-secondary.rounded 
+                        .row 
+                            p.text-center 
+                                em Empty.
     .container-fluid
         //create a table with the days of the week
         table.table.table-bordered.tabel-orar
@@ -41,57 +77,38 @@ block content
             tbody
                 tr
                     th(scope="row").text-center.h4 9:00-11:00
-                    td
-                        .row
-                            .col
-                                p.text-center
-                                    em Click pentru a adauga.
-                            .col-2
-                                select.form-control
-                                    option(value="0") +
-                                    option(value="0") +
-                                    option(value="0") +
-                                    option(value="0") +
-                                    option(value="0") +
-                    td
-                        p.text-center
-                            em Click pentru a adauga.
-                    td
-                        p.text-center
-                            em Click pentru a adauga.
-                    td
-                        p.text-center
-                            em Click pentru a adauga.
-                    td
-                        p.text-center
-                            em Click pentru a adauga.
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
                 tr
                     th(scope="row").text-center.h4 11:00-13:00
-                    td
-                    td
-                    td
-                    td
-                    td
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
                 tr
                     th(scope="row").text-center.h4 13:00-15:00
-                    td
-                    td
-                    td
-                    td
-                    td
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
                 tr
                     th(scope="row").text-center.h4 15:00-17:00
-                    td
-                    td
-                    td
-                    td
-                    td
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
                 tr
                     th(scope="row").text-center.h4 17:00-19:00
-                    td
-                    td
-                    td
-                    td
-                    td
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
+                    td.sortable
 
     script(src="/javascripts/drag.js")

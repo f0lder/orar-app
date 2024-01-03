@@ -13,8 +13,7 @@
     color: red;
 }
 .sortable-chosen{
-    background-color: gray;
-    font-size: larger;
+    cursor: pointer;
 }
 .tabel-sali{
     height: 100%;
@@ -32,5 +31,14 @@ input[type='number']::-webkit-outer-spin-button {
 
 .tabel-orar td:hover {
     background-color: rgba(0,0,0,.075);
-    cursor: pointer;
+}
+
+.ora{
+    margin: auto;
+    height: 5em;
+    width: 90%;
+}
+
+#list1 li{
+    margin:.2em;
 }

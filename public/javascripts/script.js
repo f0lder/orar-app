@@ -8,6 +8,15 @@ $(document).ready(function() {
     });
 });
 
+
+$(document).ready(function () {
+    $('.test').select2({
+        placeholder: "Alege grupe",
+        theme: 'bootstrap-5'
+    });
+});
+
+
 document.getElementById("corp").addEventListener('input', genCode);
 document.getElementById("etaj").addEventListener('input', genCode);
 document.getElementById("numar").addEventListener('input', genCode);

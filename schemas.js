@@ -59,12 +59,9 @@ const ProfSchema = new mongoose.Schema({
 	idMaterii: [Number],
 });
 const OraSchema = new mongoose.Schema({
-	tip: Number,
-	Materie: [MaterieSchema],
-	idSala: Number,
-	oraInceput: Number,
-	oraSf: Number,
-
+	tip:String,
+	Materie: String,
+	idSala: String,
 });
 const ZiSchema = new mongoose.Schema({
 	ora1: OraSchema, // 9 - 11
@@ -75,11 +72,7 @@ const ZiSchema = new mongoose.Schema({
 });
 const OrarSchema = new mongoose.Schema({
 	grupa: String,
-	luni: ZiSchema,
-	marti: ZiSchema,
-	miercuri: ZiSchema,
-	joi: ZiSchema,
-	vineri: ZiSchema,
+	zile: [ZiSchema],
 });
 
 module.exports ={UserSchema,SaliSchema,UniSchema,FacSchema,DepSchema,SpecSchema,GrupeSchema,MaterieSchema,ProfSchema,OrarSchema,OraSchema,ZiSchema}

@@ -1,6 +1,15 @@
 extends layout
 
 block content
+    .container.w-25.p-3
+        input(type="number" name="tip" value=0 hidden)
+
+        .form-group.m-4
+            select.test.form-control#test(name="grupe")
+                if grupe != null 
+                    each g in grupe
+                        option #{g.cod} 
+        
     .container
         .row
             .col-3.border.m-1.p-4(style="width: 30rem")

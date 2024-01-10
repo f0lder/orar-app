@@ -5,110 +5,793 @@ block content
     .d-flex.flex-row.align-self-center.m-3
         h3.px-3 Creaza orar pentru grupa
         .w-5
-            select.form-control#grupa(name="grupa")
+            select.form-control#grupa(name="grupa" placeholder="")
                 each g in grupe
                     option #{g.cod}
+    form(method="post" action="/orar/insertOrar")
+        .container-fluid
+            table.table.table-bordered.tabel-orar
+                thead.thead-dark
+                    tr
+                        th(scope="col" style="width: 5%") 
+                            h2.text-center Ore
+                        th(scope="col")
+                            h2.text-center Luni
+                        th(scope="col")
+                            h2.text-center Marti
+                        th(scope="col")
+                            h2.text-center Miercuri
+                        th(scope="col")
+                            h2.text-center Joi
+                        th(scope="col")
+                            h2.text-center Vineri
+                tbody
+                    tr
+                        th(scope="row").text-center 9:00-11:00
+                        td
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(luni9)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#luni9
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="luni")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni9" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni9" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni9" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni9" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salaluni")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                                    
+                        td
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(marti9)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#marti9
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="marti")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti9" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti9" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti9" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti9" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamarti")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(miercuri9)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#miercuri9
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="miercuri")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri9" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri9" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri9" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri9" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamiercuri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                           
+                        td
 
-    //add bootstrap classes to ul with border
-    .container-fluid
-        .row 
-            .col-md-5
-                ul#list1.list-group.m-4
-                    li.list-group-item.list-group-item-secondary.rounded
-                        .form-floating
-                            select.form-control(name="" placeholder="")
-                                each m in materii
-                                    if m.curs == true
-                                        .row #{m.curs}
-                                    option #{m.nume}
-                            label(for="") Materie
-                    li.list-group-item.list-group-item-secondary.rounded 
-                        .row 
-                            .col 
-                                .form-floating
-                                    select.form-control(name="" placeholder="")
-                                        each m in materii
-                                            option #{m.nume}
-                                    label(for="") Materie
-                            .col
-                                .form-floating
-                                    select.form-control(name="" placeholder="")
-                                        each m in materii
-                                            option #{m.nume}
-                                    label(for="") Materie
-                    li.list-group-item.list-group-item-secondary.rounded
-                        .row
-                            .col 
-                                .form-floating
-                                    select.form-control(name="" placeholder="")
-                                        each m in materii
-                                            option #{m.nume}
-                                    label(for="") Materie
-                            .col
-                        .row
-                            .col 
-                            .col 
-                                .form-floating
-                                    select.form-control(name="" placeholder="")
-                                        each m in materii
-                                            option #{m.nume}
-                                    label(for="") Materie
-                    li.list-group-item.list-group-item-secondary.rounded 
-                        .row 
-                            p.text-center 
-                                em Empty.
-    .container-fluid
-        //create a table with the days of the week
-        table.table.table-bordered.tabel-orar
-            thead.thead-dark
-                tr
-                    th(scope="col" style="width: 10%") 
-                        h2.text-center Ore
-                    th(scope="col")
-                        h2.text-center Luni
-                    th(scope="col")
-                        h2.text-center Marti
-                    th(scope="col")
-                        h2.text-center Miercuri
-                    th(scope="col")
-                        h2.text-center Joi
-                    th(scope="col")
-                        h2.text-center Vineri
-            tbody
-                tr
-                    th(scope="row").text-center.h4 9:00-11:00
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                tr
-                    th(scope="row").text-center.h4 11:00-13:00
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                tr
-                    th(scope="row").text-center.h4 13:00-15:00
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                tr
-                    th(scope="row").text-center.h4 15:00-17:00
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                tr
-                    th(scope="row").text-center.h4 17:00-19:00
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
-                    td.sortable
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(joi9)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#joi9
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="joi")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi9" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi9" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi9" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi9" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salajoi")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                            
+                        td
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(vineri9)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#vineri9
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="vineri")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri9" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri9" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri9" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri9" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salavineri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                                                    
+                    tr
+                        th(scope="row").text-center 11:00-13:00
+                        td
 
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(luni11)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#luni11
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="luni")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni11" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni11" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni11" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni11" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salaluni")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+
+                        td 
+                            .d-flex.justify-content-center.align-self-center.show
+                                a.btn.btn-primary.btn-block(onClick="show(marti11)")
+                                    svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-plus", viewBox="0 0 16 16")
+                                        path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4")
+                            .d-none#marti11
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="marti")
+                                                option(value=null) Liber
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti11" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti11" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti11" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti11" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamarti")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="miercuri")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                            .row.m-1
+                                .col
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipmiercuri11" value="Curs"  checked)
+                                        label.form-check-label(for="Curs") C
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipmiercuri11" value="Laborator" )
+                                        label.form-check-label(for="Laborator") L
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipmiercuri11" value="Seminar" )
+                                        label.form-check-label(for="Seminar") S
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipmiercuri11" value="Proiect" )
+                                        label.form-check-label(for="Proiect") P
+                                .col
+                                    .form-group.m-1
+                                        select.sala.form-control(name="salamiercuri")
+                                            if sali != null 
+                                                each s in sali
+                                                    option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="joi")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                            .row.m-1
+                                .col
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipjoi11" value="Curs"  checked)
+                                        label.form-check-label(for="Curs") C
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipjoi11" value="Laborator" )
+                                        label.form-check-label(for="Laborator") L
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipjoi11" value="Seminar" )
+                                        label.form-check-label(for="Seminar") S
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipjoi11" value="Proiect" )
+                                        label.form-check-label(for="Proiect") P
+                                .col
+                                    .form-group.m-1
+                                        select.sala.form-control(name="salajoi")
+                                            if sali != null 
+                                                each s in sali
+                                                    option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="vineri")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                            .row.m-1
+                                .col
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipvineri11" value="Curs"  checked)
+                                        label.form-check-label(for="Curs") C
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipvineri11" value="Laborator" )
+                                        label.form-check-label(for="Laborator") L
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipvineri11" value="Seminar" )
+                                        label.form-check-label(for="Seminar") S
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipvineri11" value="Proiect" )
+                                        label.form-check-label(for="Proiect") P
+                                .col
+                                    .form-group.m-1
+                                        select.sala.form-control(name="salavineri")
+                                            if sali != null 
+                                                each s in sali
+                                                    option #{s.corp}#{s.etaj}#{s.numar}
+
+                    tr
+                        th(scope="row").text-center 13:00-15:00
+                        td 
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="luni")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                            .row.m-1
+                                .col
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni13" value="Curs"  checked)
+                                        label.form-check-label(for="Curs") C
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni13" value="Laborator" )
+                                        label.form-check-label(for="Laborator") L
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni13" value="Seminar" )
+                                        label.form-check-label(for="Seminar") S
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni13" value="Proiect" )
+                                        label.form-check-label(for="Proiect") P
+                                .col
+                                    .form-group.m-1
+                                        select.sala.form-control(name="salaluni")
+                                            if sali != null 
+                                                each s in sali
+                                                    option #{s.corp}#{s.etaj}#{s.numar}
+                            td
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="marti")
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti13" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti13" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti13" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti13" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamarti")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                            td 
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="miercuri")
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri13" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri13" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri13" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri13" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamiercuri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                            td
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="joi")
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi13" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi13" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi13" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi13" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salajoi")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                            td
+                                .row.m-1
+                                    .col
+                                        .form-group
+                                            select.mat.form-control(name="vineri")
+                                                if materii != null 
+                                                    each m in materii
+                                                        option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri13" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri13" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri13" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri13" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salavineri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+
+                        
+                    tr
+                        th(scope="row").text-center 15:00-17:00
+                        td 
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="luni")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                            .row.m-1
+                                .col
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni15" value="Curs"  checked)
+                                        label.form-check-label(for="Curs") C
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni15" value="Laborator" )
+                                        label.form-check-label(for="Laborator") L
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni15" value="Seminar" )
+                                        label.form-check-label(for="Seminar") S
+                                    .form-check.form-check-inline
+                                        input.form-check-input(type="radio", name="tipluni15" value="Proiect" )
+                                        label.form-check-label(for="Proiect") P
+                                .col
+                                    .form-group.m-1
+                                        select.sala.form-control(name="salaluni")
+                                            if sali != null 
+                                                each s in sali
+                                                    option #{s.corp}#{s.etaj}#{s.numar}
+                        td 
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="marti")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti15" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti15" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti15" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti15" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamarti")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="miercuri")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri15" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri15" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri15" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri15" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamiercuri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td 
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="joi")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi15" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi15" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi15" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi15" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salajoi")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="vineri")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri15" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri15" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri15" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri15" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salavineri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        
+                    tr
+                        th(scope="row").text-center 17:00-19:00
+                        td 
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="luni")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni17" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni17" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni17" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipluni17" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salaluni")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="marti")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti17" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti17" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti17" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmarti17" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamarti")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="miercuri")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri17" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri17" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri17" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipmiercuri17" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salamiercuri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="joi")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi17" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi17" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi17" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipjoi17" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salajoi")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        td
+                            .row.m-1
+                                .col
+                                    .form-group
+                                        select.mat.form-control(name="vineri")
+                                            if materii != null 
+                                                each m in materii
+                                                    option #{m.nume} 
+                                .row.m-1
+                                    .col
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri17" value="Curs"  checked)
+                                            label.form-check-label(for="Curs") C
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri17" value="Laborator" )
+                                            label.form-check-label(for="Laborator") L
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri17" value="Seminar" )
+                                            label.form-check-label(for="Seminar") S
+                                        .form-check.form-check-inline
+                                            input.form-check-input(type="radio", name="tipvineri17" value="Proiect" )
+                                            label.form-check-label(for="Proiect") P
+                                    .col
+                                        .form-group.m-1
+                                            select.sala.form-control(name="salavineri")
+                                                if sali != null 
+                                                    each s in sali
+                                                        option #{s.corp}#{s.etaj}#{s.numar}
+                        
+        .container-fluid 
+            button.btn.btn-primary.m-3#saveOrar(type="submit") Salveaza orarul
+            button.btn.btn-outline-secondary.m-1(type="reset" ) Reset
+    
     script(src="/javascripts/drag.js")

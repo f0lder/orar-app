@@ -14,7 +14,7 @@ block content
                             .col Grupa 
                                 a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
                             .col.d-flex.justify-content-end 
-                                button.btn.btn-outline-primary Descarca pdf
+                                a.btn.btn-outline-primary(href=orar.pdf download="orar.pdf") Descarca pdf
                     .card-body 
                         table.table.table-bordered.table-hover 
                             thead 
@@ -38,3 +38,4 @@ block content
                                                     td  
                                                         p.text-center #{ora.Materie}
                                                         p.text-center #{ora.tip} #{ora.idSala}
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")

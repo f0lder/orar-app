@@ -1,6 +1,8 @@
 
 var express = require("express");
 const mongoose = require("mongoose");
+const {jsPDF} = require('jspdf');
+const autoTable = require('jspdf-autotable');
 
 var router = express.Router();
 
@@ -15,9 +17,59 @@ const orare = require("../models.js").orare;
 /* GET home page. */
 router.get("/", async function (req, res, next) {
 
-	const or = await orare.find({});
+	let data = await orare.find({});
 
-	res.render("index", { title: "Orar-app" , orare: or, loggedin: req.session.loggedin});
+        data.forEach(e => {
+            const doc = new jsPDF();
+
+            doc.text("Grupa: "+e.grupa, 10, 10);
+
+            doc.autoTable({
+                head: [['Ora','Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri']],
+                body:[[
+					'9:00-11:00',
+                    e.zile[0].ora[0].Materie + ' ' + e.zile[0].ora[0].tip + ' ' + e.zile[0].ora[0].idSala, 
+                    e.zile[1].ora[0].Materie,
+                    e.zile[2].ora[0].Materie,
+                    e.zile[3].ora[0].Materie,
+                    e.zile[4].ora[0].Materie
+                ],[
+					'11:00-13:00',
+					e.zile[0].ora[1].Materie, 
+                    e.zile[1].ora[1].Materie,
+                    e.zile[2].ora[1].Materie,
+                    e.zile[3].ora[1].Materie,
+                    e.zile[4].ora[1].Materie
+				],[
+					'13:00-15:00',
+					e.zile[0].ora[2].Materie,
+					e.zile[1].ora[2].Materie,
+					e.zile[2].ora[2].Materie,
+					e.zile[3].ora[2].Materie,
+					e.zile[4].ora[2].Materie
+				],[
+					'15:00-17:00',
+					e.zile[0].ora[3].Materie,
+					e.zile[1].ora[3].Materie,
+					e.zile[2].ora[3].Materie,
+					e.zile[3].ora[3].Materie,
+					e.zile[4].ora[3].Materie
+				],[
+					'17:00-19:00',
+					e.zile[0].ora[4].Materie,
+					e.zile[1].ora[4].Materie,
+					e.zile[2].ora[4].Materie,
+					e.zile[3].ora[4].Materie,
+					e.zile[4].ora[4].Materie
+				]]  
+            });
+
+            const data = doc.output('datauristring');
+
+            e.pdf=data;
+        });
+
+	res.render("index", { title: "Orar-app" , orare: data, loggedin: req.session.loggedin});
 });
 
 mongoose

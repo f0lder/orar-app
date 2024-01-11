@@ -157,9 +157,6 @@ router.post('/insertOrar',async function (req, res) {
         });
 
         await orar.save();
-       
-
-        console.log(data.grupa);
 
         res.redirect('/orar');
 
@@ -167,10 +164,34 @@ router.post('/insertOrar',async function (req, res) {
 
 });
 
+const {jsPDF} = require('jspdf');
+const autoTable = require('jspdf-autotable');
+
 router.get('/all',async function (req, res) {
     if (req.session.loggedin) {
 
         let data = await models.orare.find({});
+
+        data.forEach(e => {
+            const doc = new jsPDF();
+
+            doc.text("Grupa: "+e.grupa, 10, 10);
+
+            doc.autoTable({
+                head: [['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri']],
+                body:[[
+                    e.zile[0].ora[0].Materie, 
+                    e.zile[1].ora[0].Materie,
+                    e.zile[2].ora[0].Materie,
+                    e.zile[3].ora[0].Materie,
+                    e.zile[4].ora[0].Materie
+                ]]  
+            });
+
+            const data = doc.output('datauristring');
+
+            e.pdf=data;
+        });
 
         res.render('orare', { title: 'Orare', orare: data,loggedin: req.session.loggedin });
 

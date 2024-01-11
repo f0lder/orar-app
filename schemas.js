@@ -64,11 +64,7 @@ const OraSchema = new mongoose.Schema({
 	idSala: String,
 });
 const ZiSchema = new mongoose.Schema({
-	ora1: OraSchema, // 9 - 11
-	ora2: OraSchema, // 11 - 13
-	ora3: OraSchema, // 13 -15
-	ora4: OraSchema, // 15 - 17
-	ora5: OraSchema, // 17 - 19
+	ora: [OraSchema], // 9 - 11
 });
 const OrarSchema = new mongoose.Schema({
 	grupa: String,

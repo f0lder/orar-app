@@ -13,29 +13,32 @@ html
 	body
 		nav.navbar.navbar-expand-lg.navbar-light.bg-light
 			.container-fluid
-				a.navbar-brand(href="/") Orar
-				ul.navbar-nav
-					li.nav-item.active
-						a.nav-link(href="/") Index
-					li.nav-item
-						a.nav-link(href="/home") Home
-					li.nav-item
-						a.nav-link(href="/orar") Orar
-					li.nav-item
-						a.nav-link(href="/insertData") Insert Data(test page)
-					li.nav-item.dropdown
-						a.nav-link.dropdown-toggle#menuD(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Date...
-						ul.dropdown-menu(aria-labelledby="menuD")
-							li
-								a.dropdown-item(href="/sali") Sali
-							li 
-								a.dropdown-item(href="/grupe") Grupe
-							li 
-								a.dropdown-item(href="/materii") Materii
-							li 
-								a.dropdown-item(href="#") Orare
-							li 
-								a.dropdown-item(href="/profi") Profesori
+				a.navbar-brand(href="/") Orar UB
+				if loggedin
+					ul.navbar-nav
+						li.nav-item.active
+							a.nav-link(href="/") Index
+						li.nav-item
+							a.nav-link(href="/home") Home
+						li.nav-item
+							a.nav-link(href="/orar") Orar
+						li.nav-item
+							a.nav-link(href="/insertData") Insert Data(test page)
+						li.nav-item.dropdown
+							a.nav-link.dropdown-toggle#menuD(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Date...
+							ul.dropdown-menu(aria-labelledby="menuD")
+								li
+									a.dropdown-item(href="/sali") Sali
+								li 
+									a.dropdown-item(href="/grupe") Grupe
+								li 
+									a.dropdown-item(href="/materii") Materii
+								li 
+									a.dropdown-item(href="/orar/all") Orare
+								li 
+									a.dropdown-item(href="/profi") Profesori
+						li.nav-item
+							a.nav-link(href="/logout") Logout
 		block content
 
 		block scripts

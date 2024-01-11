@@ -9,9 +9,16 @@ const profi = require('../models.js').profi;
 const users = require("../models.js").users;
 const sali = require("../models.js").sali;
 const materii = require("../models.js").materii;
+const orare = require("../models.js").orare;
+
+
 /* GET home page. */
-router.get("/", function (req, res, next) {
-	res.render("index", { title: "Orar-app" });
+router.get("/", async function (req, res, next) {
+
+
+	const or = await orare.find({});
+
+	res.render("index", { title: "Orar-app" , orare: or, loggedin: req.session.loggedin});
 });
 
 mongoose
@@ -66,6 +73,21 @@ router.post("/auth", function (request, response) {
 	}
 });
 
+
+router.get("/logout", function (request, response) {
+	request.session.loggedin = false;
+	response.redirect("/");
+});
+
+
+router.get("/login", function (request, response) {
+	if (request.session.loggedin) {
+		response.redirect("/home");
+	} else {
+		response.render('login', { title: 'Orar-app' });
+	}
+});
+
 router.get("/home", function (request, response) {
 	if (request.session.loggedin) {
 		let cursor = getSali();
@@ -74,7 +96,7 @@ router.get("/home", function (request, response) {
 			rooms.forEach(e => {
 				e.cod = codSala(e);
 			});
-			response.render("home", { sali: rooms, name: request.session.username });
+			response.render("home", { sali: rooms, name: request.session.username,loggedin: request.session.loggedin });
 		});
 	} else {
 		response.render('index', { redirected: true, title: 'Orar-app' });
@@ -99,7 +121,7 @@ router.get("/insertData", function (req, res) {
 		];
 
 		Promise.allSettled(promisies).then((results) => {
-			res.render('insert', { 'profi': results[0].value, 'grupe': results[1].value, 'maxID': results[2].value[0].id });
+			res.render('insert', { loggedin: req.session.loggedin,'profi': results[0].value, 'grupe': results[1].value, 'maxID': results[2].value[0].id });
 		});
 
 	} else {

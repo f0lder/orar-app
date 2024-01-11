@@ -4,25 +4,47 @@ block content
 
 	h1.display-2= title
 	p.lead Welcome to #{title}
+
+	.container-fluid
+		if orare != null
+			each orar in orare
+				.card.mt-3
+					.card-header
+						.row
+							.col Grupa #{orar.grupa}
+							.col.d-flex.justify-content-end
+								button.btn.btn-outline-primary
+									svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-download", viewBox="0 0 16 16")
+										path(d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5")
+										path(d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z")
+									|  Descarca pdf
+					.card-body
+						table.table.table-bordered.table-hover
+							thead
+								tr
+								th(scope="col" style="width:5%") Ora
+								th(scope="col") Luni
+								th(scope="col") Marti
+								th(scope="col") Miercuri
+								th(scope="col") Joi
+								th(scope="col") Vineri
+							tbody
+								each zi in orar.zile
+									tr
+										th(scope="row") 9-11
+											each ora in zi.ora
+												if ora.Materie == "Liber"
+													td 
+												else
+													td 
+														p.text-center #{ora.Materie} 
+														p.text-center #{ora.tip} #{ora.idSala}
 	if redirected
 		.alert.alert-danger.alert-dismissible.fade.show.text-center.mb-4.w-50.m-auto#login-alert
 			strong Please log in to acces this!
 			button.btn-close(type="button" data-dismiss="alert" aria-label="Close" id='alert')
-	.container.m-auto
-		form(action="/auth" method="post")
-			.form-group.row.m-1
-				.col-9.m-auto.mb-3
-					input.form-control(type="text" name="username" id="username" placeholder="Username" required)
-					.invalid-feedback Nume invalid!
-			.form-group.row.m-1
-				.col-9.m-auto
-					input.form-control(type="password" name="password" id="password" placeholder="Password" required)
-					.invalid-feedback Parola invalida!
-			.row.mb-4.m-auto 
-				.form-check
-					input.form-check-input(type="checkbox" id="check" value='' checked='')
-					label.form-check-label(for="check") Remember me
-			.w-100.text-center
-				button.btn.btn-primary.btn-block(type='submit' id='login') Login
 
-	script(src="javascripts/checkLogin.js") 
+	.row.p-3
+		.col
+			a.btn.btn-outline-primary(href="/login") Login
+	script(src="javascripts/checkLogin.js")

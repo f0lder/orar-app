@@ -23,7 +23,7 @@ router.get('/', async function (req, res) {
             let maxID = await materii.find({}).sort({ id: -1 }).limit(1);
             let allProfi = await profi.find({});
             let allGrupe = await grupe.find({});
-            res.render('materii', { materii: data , maxID: maxID[0].id + 1, profi: allProfi, grupe: allGrupe});
+            res.render('materii', {loggedin: req.session.loggedin, materii: data , maxID: maxID[0].id + 1, profi: allProfi, grupe: allGrupe});
         }
         catch (err) {
             console.log(err);
@@ -53,4 +53,5 @@ router.post("/insertMaterie", async function (req, res) {
         });
     }
 });
+
 module.exports = router;

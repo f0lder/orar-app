@@ -9,7 +9,7 @@ const grupe = require('../models').grupe;
 router.get('/', async function (req, res,) {
     if (req.session.loggedin) {
         await grupe.find({}).then((data) => {
-            res.render("grupe", { grupe: data });
+            res.render("grupe", { grupe: data,loggedin: req.session.loggedin });
         });
     }
     else {
@@ -39,7 +39,7 @@ router.post('/insertGrupa', function (req, res) {
 router.get('/cod=:cod', async function (req, res) {
 
     grupe.findOne({ "cod": req.params.cod }).then((data) => {
-        res.render('grupa', { grupa: data });
+        res.render('grupa', { grupa: data,loggedin: req.session.loggedin });
     });
 });
 

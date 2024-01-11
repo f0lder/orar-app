@@ -15,7 +15,7 @@ router.get('/', async function (req, res) {
         }
         let allMaterii = await materii.find({});
         let maxID = await profi.find({}).sort({ id: -1 }).limit(1);
-        res.render('profi', { title: "Profesori", profi: data, materii: allMaterii, maxID: maxID[0].id + 1 });
+        res.render('profi', { title: "Profesori", loggedin: req.session.loggedin, profi: data, materii: allMaterii, maxID: maxID[0].id + 1 });
     } else {
         res.render('index', { redirected: true, title: "Orar-app" });
     }

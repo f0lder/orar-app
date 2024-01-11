@@ -2,16 +2,17 @@ extends layout
 
 block content 
 
-    .d-flex.flex-row.align-self-center.m-3
-        h3.px-3 Creaza orar pentru grupa
-        .w-5
-            select.form-control#grupa(name="grupa" placeholder="")
-                each g in grupe
-                    option #{g.cod}
     form(method="post" action="/orar/insertOrar")
+        .d-flex.flex-row.align-self-center.m-3
+            h3.px-3 Creaza orar pentru grupa
+            .w-5
+                select.form-control#grupa(name="grupa" placeholder="")
+                    each g in grupe
+                        option #{g.cod}
+    
         .container-fluid
             table.table.table-bordered.tabel-orar
-                thead.thead-dark
+                thead
                     tr
                         th(scope="col" style="width: 5%") 
                             h2.text-center Ore

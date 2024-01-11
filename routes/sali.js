@@ -35,7 +35,7 @@ router.get("/", function (request, response) {
                 e.cod = codSala(e);
             });
             //console.log("Sali: " + rooms);
-            response.render("sali", { sali: rooms });
+            response.render("sali", { sali: rooms,loggedin: request.session.loggedin });
         });
     } else {
         response.render('index', { redirected: true, title: 'Orar-app' });

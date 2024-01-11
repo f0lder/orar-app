@@ -59,3 +59,14 @@ input[type='number']::-webkit-outer-spin-button {
     height: 100%;
     margin: 1em;
 }
+
+.show-btn{
+    display: block;
+    margin:-1em;
+    padding: 3em;
+    cursor: pointer;
+}
+
+.show-btn svg{
+    color: gray;
+}

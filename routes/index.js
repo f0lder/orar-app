@@ -15,7 +15,6 @@ const orare = require("../models.js").orare;
 /* GET home page. */
 router.get("/", async function (req, res, next) {
 
-
 	const or = await orare.find({});
 
 	res.render("index", { title: "Orar-app" , orare: or, loggedin: req.session.loggedin});

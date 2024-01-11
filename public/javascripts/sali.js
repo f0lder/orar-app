@@ -9,9 +9,6 @@ genCode();
 
 function genCode() {
 
-    validateInput("numar", 'iSala');
-    validateInput("capacitate", 'iSala');
-
     let corp = document.getElementById("corp").value;
     let etaj = document.getElementById("etaj").value;
     let numar = document.getElementById("numar").value;
@@ -25,26 +22,12 @@ function genCode() {
         cod = corp + etaj + numar;
     }
     e.value = cod;
-
-    if (validateInput("numar") && validateInput("capacitate")) {
-        e.classList.add("is-valid");
-    }
 }
 
-function validateInput(id) {
+validateForm("iSala", ['numar', 'capacitate']);
+validateinput('numar', ['numar', 'capacitate'], 'iSala');
+validateinput('capacitate', ['numar', 'capacitate'], 'iSala');
 
-    if (document.getElementById(id).value != '' && document.getElementById(id).value > 0) {
-        document.getElementById(id).classList.add("is-valid");
-        document.getElementById(id).classList.remove("is-invalid");
-        document.getElementById('iSala').removeAttribute('disabled');
-        return true;
-    } else {
-        document.getElementById(id).classList.remove("is-valid");
-        document.getElementById(id).classList.add("is-invalid");
-        document.getElementById('iSala').setAttribute('disabled', 'true');
-        return false;
-    }
-}
 document.getElementById('rSala').addEventListener('click',resetSala);
 
 

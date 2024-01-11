@@ -11,7 +11,8 @@ block content
 				.card.mt-3
 					.card-header
 						.row
-							.col Grupa #{orar.grupa}
+							.col Grupa   
+								a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
 							.col.d-flex.justify-content-end
 								button.btn.btn-outline-primary
 									svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-download", viewBox="0 0 16 16")
@@ -22,16 +23,22 @@ block content
 						table.table.table-bordered.table-hover
 							thead
 								tr
-								th(scope="col" style="width:5%") Ora
+								th.text-center(scope="col" style="width:5%")
+									svg(xmlns="http://www.w3.org/2000/svg", width="26", height="26", fill="currentColor", class="bi bi-clock", viewBox="0 0 16 16")
+										path(d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z")
+										path(d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0")
+									
 								th(scope="col") Luni
 								th(scope="col") Marti
 								th(scope="col") Miercuri
 								th(scope="col") Joi
 								th(scope="col") Vineri
 							tbody
+								-var ora = 9
 								each zi in orar.zile
 									tr
-										th(scope="row") 9-11
+										th(scope="row") #{ora}-#{ora+2}
+										-ora += 2
 											each ora in zi.ora
 												if ora.Materie == "Liber"
 													td 
@@ -43,8 +50,8 @@ block content
 		.alert.alert-danger.alert-dismissible.fade.show.text-center.mb-4.w-50.m-auto#login-alert
 			strong Please log in to acces this!
 			button.btn-close(type="button" data-dismiss="alert" aria-label="Close" id='alert')
-
-	.row.p-3
-		.col
-			a.btn.btn-outline-primary(href="/login") Login
+	if !loggedin
+		.row.p-3
+			.col
+				a.btn.btn-outline-primary(href="/login") Login
 	script(src="javascripts/checkLogin.js")

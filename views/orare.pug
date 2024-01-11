@@ -11,7 +11,8 @@ block content
                 .card.mt-3 
                     .card-header
                         .row
-                            .col Grupa #{orar.grupa}
+                            .col Grupa 
+                                a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
                             .col.d-flex.justify-content-end 
                                 button.btn.btn-outline-primary Descarca pdf
                     .card-body 
@@ -24,10 +25,12 @@ block content
                                 th(scope="col") Miercuri 
                                 th(scope="col") Joi 
                                 th(scope="col") Vineri 
-                            tbody 
+                            tbody
+                                -var ora = 9
                                 each zi in orar.zile 
                                     tr 
-                                        th(scope="row") 9-11 
+                                        th(scope="row") #{ora}-#{ora+2}
+                                        -ora += 2
                                             each ora in zi.ora 
                                                 if ora.Materie == "Liber" 
                                                     td  

@@ -4,3 +4,7 @@ $(document).ready(function () {
         theme: 'bootstrap-5'
     });
 });
+
+validateForm("send", ['numeProf', 'idProf']);
+validateinput('numeProf', ['numeProf', 'idProf'], 'send');
+validateinput('idProf', ['numeProf', 'idProf'], 'send');

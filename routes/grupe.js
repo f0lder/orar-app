@@ -36,11 +36,15 @@ router.post('/insertGrupa', function (req, res) {
     }
 });
 
+const orare = require('../models').orare;
+
 router.get('/cod=:cod', async function (req, res) {
 
-    grupe.findOne({ "cod": req.params.cod }).then((data) => {
-        res.render('grupa', { grupa: data,loggedin: req.session.loggedin });
-    });
+    const grupa = await grupe.findOne({ "cod": req.params.cod });
+
+    const or = await orare.find({"grupa":req.params.cod});
+
+    res.render('grupa', { grupa: grupa,orare:or, loggedin: req.session.loggedin });
 });
 
 module.exports = router;

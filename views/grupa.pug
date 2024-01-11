@@ -4,8 +4,41 @@ block content
     if grupa == null
         h2 Invalid code
     else
-        - console.dir(grupa);
         h2 Cod: #{grupa.cod}    
         h2 Numar Studenti: #{grupa.nStudenti}
         h2 Numar semigrupe: #{grupa.nSemigrupe}
         h2 An: #{grupa.an}
+
+    .container-fluid 
+        if orare != null 
+            each orar in orare
+                .card.mt-3
+                    .card-header
+                        .row
+                            .col Grupa
+                                a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
+                            .col.d-flex.justify-content-end 
+                                button.btn.btn-outline-primary Descarca pdf
+                    .card-body 
+                        table.table.table-bordered.table-hover 
+                            thead 
+                                tr 
+                                th(scope="col" style="width:5%") Ora 
+                                th(scope="col") Luni 
+                                th(scope="col") Marti 
+                                th(scope="col") Miercuri 
+                                th(scope="col") Joi 
+                                th(scope="col") Vineri 
+                            tbody
+                                -var ora = 9
+                                each zi in orar.zile 
+                                    tr 
+                                        th(scope="row") #{ora}-#{ora+2}
+                                        -ora += 2
+                                            each ora in zi.ora 
+                                                if ora.Materie == "Liber"
+                                                    td  
+                                                else 
+                                                    td  
+                                                        p.text-center #{ora.Materie}
+                                                        p.text-center #{ora.tip} #{ora.idSala}

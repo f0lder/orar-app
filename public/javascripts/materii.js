@@ -6,3 +6,8 @@ $(document).ready(function () {
         theme: 'bootstrap-5'
     });
 });
+
+
+validateForm("iMat", ['numeMaterie', 'idProf']);
+validateinput('numeMaterie', ['numeMaterie', 'idProf'], 'iMat');
+validateinput('idProf', ['numeMaterie', 'idProf'], 'iMat');

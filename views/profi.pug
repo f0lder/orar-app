@@ -29,6 +29,7 @@ block content
                     .form-floating.m-4
                         input.form-control#numeProf(type="text" name="nume" placeholder="")
                         label(for="numeProf") Nume profesor
+                        .invalid-feedback Numele profesorului nu poate fi gol!
                     .form-group.m-4
                         select.multiple-sel.form-control#idProf(name="materii" multiple)
                                 if materii != null 
@@ -39,6 +40,7 @@ block content
                            | Daca alegeti o materie care este atribuita deja unui profesor, aceasta va fi atribuita noului profesor si stearsa de la cel vechi.
 
                     .form-group.m-4 
-                        button.btn.btn-outline-primary.m-2(type="submit" ) Iserează profesor
+                        button.btn.btn-outline-primary.m-2#send(type="submit" ) Iserează profesor
                         button.btn.btn-outline-secondary.m-2(type="reset" ) Reset
+    script(src="javascripts/functions.js")
     script(src="javascripts/profi.js")

@@ -30,12 +30,15 @@ block content
                     .form-floating.m-4 
                         input.form-control#cod(type="number" name="cod" placeholder="Codul grupei" required)
                         label(for="cod") Codul grupei
+                        .invalid-feedback Codul grupei nu poate fi gol!
                     .form-floating.m-4
                         input.form-control#nSemigrupe(type="number" name="nSemigrupe" placeholder="Numarul de semigrupe" required)
                         label(for="nSemigrupe") Numarul de semigrupe
+                        .invalid-feedback Numarul de semigrupe nu poate fi gol!
                     .form-floating.m-4
                         input.form-control#nStudenti(type="number" name="nStudenti" placeholder="Numarul de studenti" required)
                         label(for="nStudenti") Numarul de studenti
+                        .invalid-feedback Numarul de studenti nu poate fi gol!
                     .form-floating.m-4
                         select.form-control#an(name="an")
                             option(value='1') 1
@@ -44,5 +47,7 @@ block content
                             option(value='4') 4
                         label(for="an") Anul
                     .form-group.m-4 
-                        button.btn.btn-outline-primary.m-2(type="submit" ) Iserează grupa
+                        button.btn.btn-outline-primary.m-2(type="submit" id="send") Iserează grupa
                         button.btn.btn-outline-secondary.m-2(type="reset" ) Reset
+    script(src="/javascripts/functions.js")
+    script(src="/javascripts/grupe.js") 

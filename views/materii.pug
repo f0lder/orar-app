@@ -47,6 +47,7 @@ block content
                         .form-floating.m-4
                             input.form-control#numeMaterie(type="text" name="nume" placeholder="")
                             label.col-form-label(for="numeMaterie") Nume materie
+                            .invalid-feedback Numele materiei nu poate fi gol!
                         .form-check.form-check-inline.m-3
                             input.form-check-input#C(type="checkbox" name="Curs")
                             label.form-check-label(for ="C") C
@@ -72,5 +73,6 @@ block content
                                         option #{g.cod} 
                         .form-group.m-4
                                 button.btn.btn-primary.m-2(type="submit" id="iMat") Isereaza materie
-                                button.btn.btn-outline-secondary(type="reset" id="rMat") Reset   
+                                button.btn.btn-outline-secondary(type="reset" id="rMat") Reset  
+    script(src="javascripts/functions.js") 
     script(src="javascripts/materii.js")

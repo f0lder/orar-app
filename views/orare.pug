@@ -15,16 +15,18 @@ block content
                                 a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
                             .col.d-flex.justify-content-end 
                                 a.btn.btn-outline-primary(href=orar.pdf download="orar.pdf") Descarca pdf
+                            .col-1.d-flex.justify-content-end
+                                a.btn.btn-outline-danger(href="/orar/delete/"+orar._id) Sterge Orar
                     .card-body 
                         table.table.table-bordered.table-hover 
                             thead 
                                 tr 
-                                th(scope="col" style="width:5%") Ora 
-                                th(scope="col") Luni 
-                                th(scope="col") Marti 
-                                th(scope="col") Miercuri 
-                                th(scope="col") Joi 
-                                th(scope="col") Vineri 
+                                th(scope="col" style="width:5%") Ora
+                                th(scope="col") Luni
+                                th(scope="col") Marti
+                                th(scope="col") Miercuri
+                                th(scope="col") Joi
+                                th(scope="col") Vineri
                             tbody
                                 -var ora = 9
                                 each zi in orar.zile 

@@ -200,4 +200,17 @@ router.get('/all',async function (req, res) {
     }
 });
 
+
+router.get('/delete/:id',async function (req, res) {
+    if (req.session.loggedin) {
+
+        await models.orare.findByIdAndDelete(req.params.id);
+
+        res.redirect('/orar/all');
+
+    } else {
+        res.render('index', { redirected: true, title: "Orar-app" });
+    }
+});
+
 module.exports = router;

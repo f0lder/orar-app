@@ -16,6 +16,9 @@ function show(el) {
 
     el.classList.remove("d-none");
 
+    window.onbeforeunload = function() {
+    return "Are you sure you want to leave?";
+};
 
     //get the previous element sibling
     var sibling = el.previousElementSibling;

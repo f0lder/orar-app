@@ -2,8 +2,8 @@ extends layout
 
 block content
 
-	h1.display-2= title
-	p.lead Welcome to #{title}
+	h1.p-3.display-2= title
+	p.p-3.lead Welcome to #{title}
 
 	.container-fluid
 		if orare != null
@@ -11,39 +11,44 @@ block content
 				.card.mt-3
 					.card-header
 						.row
-							.col Grupa   
-								a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
+							.col
+								a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) Grupa #{orar.grupa}
 							.col.d-flex.justify-content-end
 								a.btn.btn-outline-primary(href=orar.pdf download="orar-"+orar.grupa+".pdf")
 									svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-download", viewBox="0 0 16 16")
 										path(d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5")
 										path(d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z")
-									|  Descarca pdf
 					.card-body
 						table.table.table-bordered.table-hover
 							thead
 								tr
-								th.text-center(scope="col" style="width:5%")
-									svg(xmlns="http://www.w3.org/2000/svg", width="26", height="26", fill="currentColor", class="bi bi-clock", viewBox="0 0 16 16")
-										path(d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z")
-										path(d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0")
-									
-								th(scope="col") Luni
-								th(scope="col") Marti
-								th(scope="col") Miercuri
-								th(scope="col") Joi
-								th(scope="col") Vineri
+									th(scope="col" style="width:5%")
+										p.text-center
+											svg(xmlns="http://www.w3.org/2000/svg", width="26", height="26", fill="currentColor", class="bi bi-clock", viewBox="0 0 16 16")
+												path(d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z")
+												path(d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0")
+										
+									th(scope="col") 
+										p.text-center Luni
+									th.text-center(scope="col")
+										p.text-center Marti
+									th.text-center(scope="col")
+										p.text-center Miercuri
+									th.text-center(scope="col")
+										p.text-center Joi
+									th.text-center(scope="col")
+										p.text-center Vineri
 							tbody
 								-var ora = 9
 								each zi in orar.zile
 									tr
-										th(scope="row") #{ora}-#{ora+2}
+										th.text-center.align-middle(scope="row") #{ora}-#{ora+2}
 										-ora += 2
 											each ora in zi.ora
 												if ora.Materie == "Liber"
-													td 
+													td
 												else
-													td 
+													td
 														p.text-center #{ora.Materie} 
 														p.text-center #{ora.tip} #{ora.idSala}
 	if redirected
@@ -51,6 +56,5 @@ block content
 			strong Please log in to acces this!
 			button.btn-close(type="button" data-dismiss="alert" aria-label="Close" id='alert')
 	if !loggedin
-		.row.p-3
-			.col
-				a.btn.btn-outline-primary(href="/login") Login
+		.col-4.p-3
+			a.btn.btn-outline-primary(href="/login") Login

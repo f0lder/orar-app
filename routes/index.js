@@ -13,6 +13,13 @@ const sali = require("../models.js").sali;
 const materii = require("../models.js").materii;
 const orare = require("../models.js").orare;
 
+function getOra(ora,i,j) {
+	if(ora.zile[i].ora[j].Materie == "Liber"){
+		return '';
+	}
+	return ora.zile[i].ora[j].Materie + '\n' + ora.zile[i].ora[j].tip + ' ' + ora.zile[i].ora[j].idSala
+}
+
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -28,40 +35,41 @@ router.get("/", async function (req, res, next) {
                 head: [['Ora','Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri']],
                 body:[[
 					'9:00-11:00',
-                    e.zile[0].ora[0].Materie + ' ' + e.zile[0].ora[0].tip + ' ' + e.zile[0].ora[0].idSala, 
-                    e.zile[1].ora[0].Materie,
-                    e.zile[2].ora[0].Materie,
-                    e.zile[3].ora[0].Materie,
-                    e.zile[4].ora[0].Materie
+					getOra(e,0,0),
+					getOra(e,1,0),
+					getOra(e,2,0),
+					getOra(e,3,0),
+					getOra(e,4,0)
                 ],[
 					'11:00-13:00',
-					e.zile[0].ora[1].Materie, 
-                    e.zile[1].ora[1].Materie,
-                    e.zile[2].ora[1].Materie,
-                    e.zile[3].ora[1].Materie,
-                    e.zile[4].ora[1].Materie
+					getOra(e,0,1),
+					getOra(e,1,1),
+					getOra(e,2,1),
+					getOra(e,3,1),
+					getOra(e,4,1)
 				],[
 					'13:00-15:00',
-					e.zile[0].ora[2].Materie,
-					e.zile[1].ora[2].Materie,
-					e.zile[2].ora[2].Materie,
-					e.zile[3].ora[2].Materie,
-					e.zile[4].ora[2].Materie
+					getOra(e,0,2),
+					getOra(e,1,2),
+					getOra(e,2,2),
+					getOra(e,3,2),
+					getOra(e,4,2)
 				],[
 					'15:00-17:00',
-					e.zile[0].ora[3].Materie,
-					e.zile[1].ora[3].Materie,
-					e.zile[2].ora[3].Materie,
-					e.zile[3].ora[3].Materie,
-					e.zile[4].ora[3].Materie
+					getOra(e,0,3),
+					getOra(e,1,3),
+					getOra(e,2,3),
+					getOra(e,3,3),
+					getOra(e,4,3)
 				],[
+
 					'17:00-19:00',
-					e.zile[0].ora[4].Materie,
-					e.zile[1].ora[4].Materie,
-					e.zile[2].ora[4].Materie,
-					e.zile[3].ora[4].Materie,
-					e.zile[4].ora[4].Materie
-				]]  
+					getOra(e,0,4),
+					getOra(e,1,4),
+					getOra(e,2,4),
+					getOra(e,3,4),
+					getOra(e,4,4)
+				]]
             });
 
             const data = doc.output('datauristring');

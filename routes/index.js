@@ -143,7 +143,7 @@ router.get("/login", function (request, response) {
 });
 
 router.get("/home", function (request, response) {
-	if (request.session.loggedin || true) {
+	if (request.session.loggedin) {
 		let cursor = getSali();
 
 		cursor.then((rooms) => {

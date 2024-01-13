@@ -22,11 +22,6 @@ mongoose
 	.then(() => console.log("MongoDB connected"))
 	.catch(err => console.log(err));
 
-
-async function getMaxIdMaterii() {
-	return await materii.find({}).sort({ id: -1 }).limit(1);
-}
-
 function codSala(sala) {
 	if (sala.etaj == 0) {
 		return sala.corp + 'P' + sala.numar + '-' + sala.capacitate;
@@ -69,9 +64,12 @@ router.get("/", async function (req, res, next) {
 				valign: 'middle',
 				margin: { top: 20, bottom: 20 },
 				minCellHeight: 30,
+			},
+			headStyles:{
+				minCellHeight: 10,
 			}
 		});
-
+			
 		const data = doc.output('datauristring');
 
 		e.pdf = data;

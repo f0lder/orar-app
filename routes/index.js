@@ -28,50 +28,25 @@ router.get("/", async function (req, res, next) {
 	let data = await orare.find({});
 
 	data.forEach(e => {
-		const doc = new jsPDF();
+		const doc = new jsPDF("landscape");
 
 		doc.text("Grupa: " + e.grupa, 10, 10);
 
 		doc.autoTable({
 			head: [['Ora', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri']],
-			body: [[
-				'9:00-11:00',
-				getOra(e, 0, 0),
-				getOra(e, 1, 0),
-				getOra(e, 2, 0),
-				getOra(e, 3, 0),
-				getOra(e, 4, 0)
-			], [
-				'11:00-13:00',
-				getOra(e, 0, 1),
-				getOra(e, 1, 1),
-				getOra(e, 2, 1),
-				getOra(e, 3, 1),
-				getOra(e, 4, 1)
-			], [
-				'13:00-15:00',
-				getOra(e, 0, 2),
-				getOra(e, 1, 2),
-				getOra(e, 2, 2),
-				getOra(e, 3, 2),
-				getOra(e, 4, 2)
-			], [
-				'15:00-17:00',
-				getOra(e, 0, 3),
-				getOra(e, 1, 3),
-				getOra(e, 2, 3),
-				getOra(e, 3, 3),
-				getOra(e, 4, 3)
-			], [
-
-				'17:00-19:00',
-				getOra(e, 0, 4),
-				getOra(e, 1, 4),
-				getOra(e, 2, 4),
-				getOra(e, 3, 4),
-				getOra(e, 4, 4)
-			]]
+			body: [
+				['9:00-11:00', getOra(e, 0, 0), getOra(e, 1, 0), getOra(e, 2, 0), getOra(e, 3, 0), getOra(e, 4, 0)],
+				['11:00-13:00', getOra(e, 0, 1), getOra(e, 1, 1), getOra(e, 2, 1), getOra(e, 3, 1), getOra(e, 4, 1)],
+				['13:00-15:00', getOra(e, 0, 2), getOra(e, 1, 2), getOra(e, 2, 2), getOra(e, 3, 2), getOra(e, 4, 2)],
+				['15:00-17:00', getOra(e, 0, 3), getOra(e, 1, 3), getOra(e, 2, 3), getOra(e, 3, 3), getOra(e, 4, 3)],
+				['17:00-19:00', getOra(e, 0, 4), getOra(e, 1, 4), getOra(e, 2, 4), getOra(e, 3, 4), getOra(e, 4, 4)],
+				],
+			theme: 'grid',
+			startY: 20,
+			margin: { top: 20 , bottom: 20},
 		});
+
+		doc.addPage();
 
 		const data = doc.output('datauristring');
 
@@ -159,17 +134,17 @@ router.get("/home", function (request, response) {
 
 router.post("/signup", async function (req, res, next) {
 
-	try{
+	try {
 		let newUser = new users_2();
 		newUser.username = req.body.username;
 		newUser.setPassword(req.body.password);
 		await newUser.save();
 		res.redirect("/login");
 
-	}catch(err){
+	} catch (err) {
 		console.log(err);
 	}
-	
+
 });
 
 

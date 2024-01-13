@@ -39,18 +39,166 @@ block content
 									th.text-center(scope="col")
 										p.text-center Vineri
 							tbody
-								-var ora = 9
-								each zi in orar.zile
-									tr
-										th.text-center.align-middle(scope="row") #{ora}-#{ora+2}
-										-ora += 2
-											each ora in zi.ora
-												if ora.Materie == "Liber"
-													td
-												else
-													td
-														p.text-center #{ora.Materie} 
-														p.text-center #{ora.tip} #{ora.idSala}
+								tr
+									th.text-center.align-middle(scope="row") 9-11
+										td
+											if orar.zile[0].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[0].ora[0].Materie}
+												p.text-center #{orar.zile[0].ora[0].tip} #{orar.zile[0].ora[0].idSala}
+										td
+											if orar.zile[1].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[1].ora[0].Materie}
+												p.text-center #{orar.zile[1].ora[0].tip} #{orar.zile[1].ora[0].idSala}
+										td
+											if orar.zile[2].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[2].ora[0].Materie}
+												p.text-center #{orar.zile[2].ora[0].tip} #{orar.zile[2].ora[0].idSala}
+										td
+											if orar.zile[3].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[3].ora[0].Materie}
+												p.text-center #{orar.zile[3].ora[0].tip} #{orar.zile[3].ora[0].idSala}
+										td
+											if orar.zile[4].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[4].ora[0].Materie}
+												p.text-center #{orar.zile[4].ora[0].tip} #{orar.zile[4].ora[0].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 11-13
+										td
+											if orar.zile[0].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[0].ora[1].Materie}
+												p.text-center #{orar.zile[0].ora[1].tip} #{orar.zile[0].ora[1].idSala}
+										td
+											if orar.zile[1].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[1].ora[1].Materie}
+												p.text-center #{orar.zile[1].ora[1].tip} #{orar.zile[1].ora[1].idSala}
+										td
+											if orar.zile[2].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[2].ora[1].Materie}
+												p.text-center #{orar.zile[2].ora[1].tip} #{orar.zile[2].ora[1].idSala}
+										td
+											if orar.zile[3].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[3].ora[1].Materie}
+												p.text-center #{orar.zile[3].ora[1].tip} #{orar.zile[3].ora[1].idSala}
+										td
+											if orar.zile[4].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[4].ora[1].Materie}
+												p.text-center #{orar.zile[4].ora[1].tip} #{orar.zile[4].ora[1].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 13-15
+										td
+											if orar.zile[0].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[0].ora[2].Materie}
+												p.text-center #{orar.zile[0].ora[2].tip} #{orar.zile[0].ora[2].idSala}
+										td
+											if orar.zile[1].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[1].ora[2].Materie}
+												p.text-center #{orar.zile[1].ora[2].tip} #{orar.zile[1].ora[2].idSala}
+										td
+											if orar.zile[2].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[2].ora[2].Materie}
+												p.text-center #{orar.zile[2].ora[2].tip} #{orar.zile[2].ora[2].idSala}
+										td
+											if orar.zile[3].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[3].ora[2].Materie}
+												p.text-center #{orar.zile[3].ora[2].tip} #{orar.zile[3].ora[2].idSala}
+										td
+											if orar.zile[4].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[4].ora[2].Materie}
+												p.text-center #{orar.zile[4].ora[2].tip} #{orar.zile[4].ora[2].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 15-17
+										td
+											if orar.zile[0].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[0].ora[3].Materie}
+												p.text-center #{orar.zile[0].ora[3].tip} #{orar.zile[0].ora[3].idSala}
+										td
+											if orar.zile[1].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[1].ora[3].Materie}
+												p.text-center #{orar.zile[1].ora[3].tip} #{orar.zile[1].ora[3].idSala}
+										td
+											if orar.zile[2].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[2].ora[3].Materie}
+												p.text-center #{orar.zile[2].ora[3].tip} #{orar.zile[2].ora[3].idSala}
+										td
+											if orar.zile[3].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[3].ora[3].Materie}
+												p.text-center #{orar.zile[3].ora[3].tip} #{orar.zile[3].ora[3].idSala}
+										td
+											if orar.zile[4].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[4].ora[3].Materie}
+												p.text-center #{orar.zile[4].ora[3].tip} #{orar.zile[4].ora[3].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 17-19
+										td
+											if orar.zile[0].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[0].ora[4].Materie}
+												p.text-center #{orar.zile[0].ora[4].tip} #{orar.zile[0].ora[4].idSala}
+										td
+											if orar.zile[1].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[1].ora[4].Materie}
+												p.text-center #{orar.zile[1].ora[4].tip} #{orar.zile[1].ora[4].idSala}
+										td
+											if orar.zile[2].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[2].ora[4].Materie}
+												p.text-center #{orar.zile[2].ora[4].tip} #{orar.zile[2].ora[4].idSala}
+										td
+											if orar.zile[3].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[3].ora[4].Materie}
+												p.text-center #{orar.zile[3].ora[4].tip} #{orar.zile[3].ora[4].idSala}
+										td
+											if orar.zile[4].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center #{orar.zile[4].ora[4].Materie}
+												p.text-center #{orar.zile[4].ora[4].tip} #{orar.zile[4].ora[4].idSala}
 	if redirected
 		.alert.alert-danger.alert-dismissible.fade.show.text-center.mb-4.w-50.m-auto#login-alert
 			strong Please log in to acces this!

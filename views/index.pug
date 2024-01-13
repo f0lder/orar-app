@@ -58,3 +58,18 @@ block content
 	if !loggedin
 		.col-4.p-3
 			a.btn.btn-outline-primary(href="/login") Login
+	.container.m-auto
+		form(action="/signup" method="post")
+			.row 
+				h2.text-center Create User
+			.form-group.row.m-1
+				.col-9.m-auto.mb-3
+					input.form-control(type="text" name="username" id="username" placeholder="Username" required)
+					.invalid-feedback Nume invalid!
+			.form-group.row.m-1
+				.col-9.m-auto
+					input.form-control(type="password" name="password" id="password" placeholder="Password" required)
+					.invalid-feedback Parola invalida!
+				.text-center.mt-3
+					button.btn.btn-primary.btn-block(type='submit' id='login') Create User
+

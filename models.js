@@ -2,7 +2,8 @@ const schemas = require("./schemas.js");
 
 const mongoose = require("mongoose");
 
-const users = mongoose.model('users', schemas.UserSchema);
+const users_2 = mongoose.model("users_2",schemas.UserSchema,"users_2");
+
 const sali = mongoose.model('sali', schemas.SaliSchema, "sali");
 const facultati = mongoose.model('facultate', schemas.FacSchema, 'facultati');
 const departamente = mongoose.model('departament', schemas.DepSchema, 'departamente');
@@ -15,4 +16,4 @@ const zile = mongoose.model('zi', schemas.ZiSchema, 'zile');
 const orare = mongoose.model('orar', schemas.OrarSchema, 'orare');
 
 
-module.exports = {users,sali,facultati,departamente,specializari,grupe,materii,profi,ore,zile,orare}
+module.exports = {users_2,sali,facultati,departamente,specializari,grupe,materii,profi,ore,zile,orare}

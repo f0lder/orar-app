@@ -1,20 +1,21 @@
 
 var express = require("express");
 const mongoose = require("mongoose");
-const {jsPDF} = require('jspdf');
+const { jsPDF } = require('jspdf');
 const autoTable = require('jspdf-autotable');
 
 var router = express.Router();
 
 const grupe = require('../models.js').grupe;
 const profi = require('../models.js').profi;
-const users = require("../models.js").users;
+const users_2 = require("../models.js").users_2;
 const sali = require("../models.js").sali;
 const materii = require("../models.js").materii;
 const orare = require("../models.js").orare;
 
-function getOra(ora,i,j) {
-	if(ora.zile[i].ora[j].Materie == "Liber"){
+
+function getOra(ora, i, j) {
+	if (ora.zile[i].ora[j].Materie == "Liber") {
 		return '';
 	}
 	return ora.zile[i].ora[j].Materie + '\n' + ora.zile[i].ora[j].tip + ' ' + ora.zile[i].ora[j].idSala
@@ -26,58 +27,58 @@ router.get("/", async function (req, res, next) {
 
 	let data = await orare.find({});
 
-        data.forEach(e => {
-            const doc = new jsPDF();
+	data.forEach(e => {
+		const doc = new jsPDF();
 
-            doc.text("Grupa: "+e.grupa, 10, 10);
+		doc.text("Grupa: " + e.grupa, 10, 10);
 
-            doc.autoTable({
-                head: [['Ora','Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri']],
-                body:[[
-					'9:00-11:00',
-					getOra(e,0,0),
-					getOra(e,1,0),
-					getOra(e,2,0),
-					getOra(e,3,0),
-					getOra(e,4,0)
-                ],[
-					'11:00-13:00',
-					getOra(e,0,1),
-					getOra(e,1,1),
-					getOra(e,2,1),
-					getOra(e,3,1),
-					getOra(e,4,1)
-				],[
-					'13:00-15:00',
-					getOra(e,0,2),
-					getOra(e,1,2),
-					getOra(e,2,2),
-					getOra(e,3,2),
-					getOra(e,4,2)
-				],[
-					'15:00-17:00',
-					getOra(e,0,3),
-					getOra(e,1,3),
-					getOra(e,2,3),
-					getOra(e,3,3),
-					getOra(e,4,3)
-				],[
+		doc.autoTable({
+			head: [['Ora', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri']],
+			body: [[
+				'9:00-11:00',
+				getOra(e, 0, 0),
+				getOra(e, 1, 0),
+				getOra(e, 2, 0),
+				getOra(e, 3, 0),
+				getOra(e, 4, 0)
+			], [
+				'11:00-13:00',
+				getOra(e, 0, 1),
+				getOra(e, 1, 1),
+				getOra(e, 2, 1),
+				getOra(e, 3, 1),
+				getOra(e, 4, 1)
+			], [
+				'13:00-15:00',
+				getOra(e, 0, 2),
+				getOra(e, 1, 2),
+				getOra(e, 2, 2),
+				getOra(e, 3, 2),
+				getOra(e, 4, 2)
+			], [
+				'15:00-17:00',
+				getOra(e, 0, 3),
+				getOra(e, 1, 3),
+				getOra(e, 2, 3),
+				getOra(e, 3, 3),
+				getOra(e, 4, 3)
+			], [
 
-					'17:00-19:00',
-					getOra(e,0,4),
-					getOra(e,1,4),
-					getOra(e,2,4),
-					getOra(e,3,4),
-					getOra(e,4,4)
-				]]
-            });
+				'17:00-19:00',
+				getOra(e, 0, 4),
+				getOra(e, 1, 4),
+				getOra(e, 2, 4),
+				getOra(e, 3, 4),
+				getOra(e, 4, 4)
+			]]
+		});
 
-            const data = doc.output('datauristring');
+		const data = doc.output('datauristring');
 
-            e.pdf=data;
-        });
+		e.pdf = data;
+	});
 
-	res.render("index", { title: "Orar-app" , orare: data, loggedin: req.session.loggedin});
+	res.render("index", { title: "Orar-app", orare: data, loggedin: req.session.loggedin });
 });
 
 mongoose
@@ -95,8 +96,8 @@ async function getSali() {
 	return await sali.find({});
 }
 
-async function getMaxIdMaterii() {	
-	return await materii.find({}).sort({id: -1}).limit(1);
+async function getMaxIdMaterii() {
+	return await materii.find({}).sort({ id: -1 }).limit(1);
 }
 
 function codSala(sala) {
@@ -107,28 +108,22 @@ function codSala(sala) {
 	}
 }
 
-router.post("/auth", function (request, response) {
-	let username = request.body.username;
-	let password = request.body.password;
+crypto = require("crypto");
 
-	console.log("Name: " + username + "\nPassword: " + password + "\n");
+router.post("/auth", async (request, response) => {
 
-	if (username && password) {
+	const user = await users_2.findOne({ username: request.body.username });
 
-		let CurrentUser = getUser(username, password);
-
-		CurrentUser.then((user) => {
-			if (user != null) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect("/home");
-			} else {
-				response.send("Incorrect user or pass!");
-			}
-		});
+	if (user == null) {
+		response.send("Username sau parola gresita!");
 	} else {
-		response.send("Please enter user and pass");
-		response.end();
+		if (user.validPassword(request.body.password)) {
+			request.session.loggedin = true;
+			request.session.username = user.username;
+			response.redirect("/home");
+		} else {
+			response.send("Username sau parola gresita!");
+		}
 	}
 });
 
@@ -148,18 +143,33 @@ router.get("/login", function (request, response) {
 });
 
 router.get("/home", function (request, response) {
-	if (request.session.loggedin) {
+	if (request.session.loggedin || true) {
 		let cursor = getSali();
 
 		cursor.then((rooms) => {
 			rooms.forEach(e => {
 				e.cod = codSala(e);
 			});
-			response.render("home", { sali: rooms, name: request.session.username,loggedin: request.session.loggedin });
+			response.render("home", { sali: rooms, name: request.session.username, loggedin: request.session.loggedin });
 		});
 	} else {
 		response.render('index', { redirected: true, title: 'Orar-app' });
 	}
+});
+
+router.post("/signup", async function (req, res, next) {
+
+	try{
+		let newUser = new users_2();
+		newUser.username = req.body.username;
+		newUser.setPassword(req.body.password);
+		await newUser.save();
+		res.redirect("/login");
+
+	}catch(err){
+		console.log(err);
+	}
+	
 });
 
 
@@ -180,7 +190,7 @@ router.get("/insertData", function (req, res) {
 		];
 
 		Promise.allSettled(promisies).then((results) => {
-			res.render('insert', { loggedin: req.session.loggedin,'profi': results[0].value, 'grupe': results[1].value, 'maxID': results[2].value[0].id });
+			res.render('insert', { loggedin: req.session.loggedin, 'profi': results[0].value, 'grupe': results[1].value, 'maxID': results[2].value[0].id });
 		});
 
 	} else {

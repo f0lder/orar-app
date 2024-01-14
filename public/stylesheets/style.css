@@ -3,10 +3,6 @@
     min-height: 100vh;
 }
 
-.edit:hover{
-    cursor: pointer;
-    color: yellowgreen;
-}
 .dele:hover{
     cursor: pointer;
     color: red;
@@ -48,9 +44,6 @@ input[type='number']::-webkit-outer-spin-button {
     margin:.2em;
 }
 
-.diag{
-    background: linear-gradient(to bottom right, transparent 50%, gray 50%);
-}
 
 .bg{
     background-color: gray;

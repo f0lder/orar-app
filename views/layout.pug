@@ -11,34 +11,34 @@ html
 		script(src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js")
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
-		nav.navbar.navbar-expand-lg.navbar-light.blue
+		nav.navbar.navbar-expand-lg.navbar.navbar-dark.bg-primary
 			.container-fluid
-				a.navbar-brand.text-dark(href="/") Orar UB
+				a.navbar-brand(href="/") Orar UB
 				if loggedin
 					ul.navbar-nav
 						li.nav-item.active
-							a.nav-link.text-dark(href="/") Index
+							a.nav-link.active(href="/") Index
 						li.nav-item
-							a.nav-link.text-dark(href="/home") Home
+							a.nav-link(href="/home") Home
 						li.nav-item
-							a.nav-link.text-dark(href="/orar") Orar
+							a.nav-link(href="/orar") Orar
 						li.nav-item.dropdown
-							a.nav-link.dropdown-toggle.text-dark#menuD(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Date...
-							ul.dropdown-menu.blue(aria-labelledby="menuD")
+							a.nav-link.dropdown-toggle#menuD(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Date...
+							ul.dropdown-menu(aria-labelledby="menuD")
 								li
-									a.dropdown-item.text-dark(href="/sali") Sali
+									a.dropdown-item(href="/sali") Sali
 								li 
-									a.dropdown-item.text-dark(href="/grupe") Grupe
+									a.dropdown-item(href="/grupe") Grupe
 								li 
-									a.dropdown-item.text-dark(href="/materii") Materii
+									a.dropdown-item(href="/materii") Materii
 								li 
-									a.dropdown-item.text-dark(href="/orar/all") Orare
+									a.dropdown-item(href="/orar/all") Orare
 								li 
-									a.dropdown-item.text-dark(href="/profi") Profesori
+									a.dropdown-item(href="/profi") Profesori
 								li 
-									a.dropdown-item.text-dark(href="/insertData") Insert Data(test page)
+									a.dropdown-item(href="/insertData") Insert Data(test page)
 						li.nav-item
-							a.nav-link.text-dark(href="/logout") Logout
+							a.nav-link(href="/logout") Logout
 		.main
 			block content
 		.blue 
@@ -58,4 +58,5 @@ html
 								li.nav-item.mb-2 Nițoi Razvan-Mihăiță
 
 		block scripts
+			script(src="javascripts/active.js")
 			script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")

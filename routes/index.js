@@ -175,4 +175,8 @@ router.get("/insertData",async function (req, res) {
 	}
 });
 
+router.get("/new",async function (req, res) {
+	res.render('newUser', { loggedin: req.session.loggedin });
+});
+
 module.exports = router;

@@ -11,34 +11,34 @@ html
 		script(src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js")
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
-		nav.navbar.navbar-expand-lg.navbar-light.bg-light
+		nav.navbar.navbar-expand-lg.navbar-light.blue
 			.container-fluid
-				a.navbar-brand(href="/") Orar UB
+				a.navbar-brand.text-dark(href="/") Orar UB
 				if loggedin
 					ul.navbar-nav
 						li.nav-item.active
-							a.nav-link(href="/") Index
+							a.nav-link.text-dark(href="/") Index
 						li.nav-item
-							a.nav-link(href="/home") Home
+							a.nav-link.text-dark(href="/home") Home
 						li.nav-item
-							a.nav-link(href="/orar") Orar
+							a.nav-link.text-dark(href="/orar") Orar
 						li.nav-item
-							a.nav-link(href="/insertData") Insert Data(test page)
+							a.nav-link.text-dark(href="/insertData") Insert Data(test page)
 						li.nav-item.dropdown
-							a.nav-link.dropdown-toggle#menuD(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Date...
-							ul.dropdown-menu(aria-labelledby="menuD")
+							a.nav-link.dropdown-toggle.text-dark#menuD(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Date...
+							ul.dropdown-menu.blue(aria-labelledby="menuD")
 								li
-									a.dropdown-item(href="/sali") Sali
+									a.dropdown-item.text-dark(href="/sali") Sali
 								li 
-									a.dropdown-item(href="/grupe") Grupe
+									a.dropdown-item.text-dark(href="/grupe") Grupe
 								li 
-									a.dropdown-item(href="/materii") Materii
+									a.dropdown-item.text-dark(href="/materii") Materii
 								li 
-									a.dropdown-item(href="/orar/all") Orare
+									a.dropdown-item.text-dark(href="/orar/all") Orare
 								li 
-									a.dropdown-item(href="/profi") Profesori
+									a.dropdown-item.text-dark(href="/profi") Profesori
 						li.nav-item
-							a.nav-link(href="/logout") Logout
+							a.nav-link.text-dark(href="/logout") Logout
 		.main
 			block content
 

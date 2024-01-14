@@ -2,8 +2,11 @@ extends layout
 
 block content
 
-	h1.p-3.display-2 Orare UB
-
+	.row 
+		.col
+			img.logo(src="images/univ.jpg")
+		.col
+			h1.p-3.display-2 Orare UB
 	.container-fluid
 		if orare != null
 			each orar in orare

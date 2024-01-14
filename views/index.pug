@@ -221,9 +221,15 @@ block content
 													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[4].ora[4]._doc.matID) #{orar.zile[4].ora[4].Materie}
 												p.text-center #{orar.zile[4].ora[4].tip} #{orar.zile[4].ora[4].idSala}
 	if redirected
-		.alert.alert-danger.alert-dismissible.fade.show.text-center.mb-4.w-50.m-auto#login-alert
-			strong Please log in to acces this!
-			button.btn-close(type="button" data-dismiss="alert" aria-label="Close" id='alert')
-	if !loggedin
+		.container-fluid.d-flex.justify-content-center.align-items-center.m-4
+			.alert.alert-danger.text-center.w-50
+				strong Te rog să te 
+					a(href="/login") conectezi
+					|  pentru a accesa această pagină.
+		a.btn.btn-outline-primary.m-3(href="/login")
+			svg.bi.bi-arrow-left(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", viewBox="0 0 16 16")
+				path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8")
+			|  Înapoi acasă
+	if !loggedin && !redirected
 		.col-4.p-3
 			a.btn.btn-outline-primary(href="/login") Login

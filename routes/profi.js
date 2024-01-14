@@ -35,4 +35,16 @@ router.post("/insertProf", async function (req, res) {
         });
     }
 });
+
+
+router.get("/id=:id", async function (req, res) {
+
+    let p = await profi.findById(req.params.id);
+
+    let m = await materii.find({ idProfesor: p.id });
+
+    console.log(m);
+
+    res.render("prof",{loggedin: req.session.loggedin, prof: p, materii: m});
+});
 module.exports = router;

@@ -12,11 +12,12 @@ block content
             each prof in profi
                 tr 
                     th(scope="row") #{prof.id}
-                    td #{prof.nume}
+                    td 
+                        a(href="/profi/id="+prof._id) #{prof.nume}
                     td
                         if prof.materii.length
                             each materie in prof.materii
-                                a.btn.btn-outline-secondary.m-1(href=`/materii/id=${materie.id}`) #{materie.nume} &nbsp;
+                                a.btn.btn-outline-secondary.m-1(href=`/materii/id=${materie._id}`) #{materie.nume} &nbsp;
                         else 
                             p.fst-italic Nu are materii
     .container

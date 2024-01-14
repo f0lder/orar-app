@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+    //ulterior se pot adauga inf in BD cum ar fi email, nr tel, etc
+
+    h1.p-4 Nume profesor: #{prof.nume}
+
+
+    if materii.length
+        each materie in materii
+            a.btn.btn-outline-secondary.m-4(href=`/materii/id=${materie._id}`) #{materie.nume} &nbsp;
+        else 
+            p.fst-italic Nu are materii
+    

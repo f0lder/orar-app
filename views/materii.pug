@@ -20,7 +20,8 @@ block content
                 each materie in materii
                     tr 
                         th(scope="row") #{materie.id}
-                        td #{materie.nume}
+                        td 
+                            a(href="/materii/id=" + materie._id) #{materie.nume}
                         td
                             .form-check
                                 input.form-check-input(type="checkbox" disabled checked=materie.curs)

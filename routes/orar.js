@@ -33,7 +33,7 @@ router.post('/insertOrar',async function (req, res) {
             ora:[{
                 tip: data.tipluni9,
                 Materie: data.luni[0],
-                idSala: data.salaluni[0]
+                idSala: data.salaluni[0],
             },{
                 tip: data.tipluni11,
                 Materie: data.luni[1],

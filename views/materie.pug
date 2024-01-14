@@ -1,0 +1,26 @@
+extends layout 
+
+block content
+
+    h1.p-4 Materie #{materie.nume}
+
+    .container-fluid.p-4
+        .form-check
+            input.form-check-input(type="checkbox" disabled checked=materie.curs)
+            label Curs
+        .form-check
+            input.form-check-input(type="checkbox" disabled checked=materie.laborator)
+            label Laborator
+        .form-check
+            input.form-check-input(type="checkbox" disabled checked=materie.seminar)
+            label Seminar
+        .form-check
+            input.form-check-input(type="checkbox" disabled checked=materie.proiect)
+            label Proiect
+    
+
+    each grupa in materie.idGrupa
+        a.btn.btn-outline-secondary.m-4(href=`/grupe/cod=${grupa}`) #{grupa}
+
+    if prof!=null
+        a.btn.btn-outline-secondary.m-4(href=`/profesori/id=${prof._id}`) #{prof.nume}

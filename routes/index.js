@@ -43,6 +43,24 @@ router.get("/", async function (req, res, next) {
 
 	let data = await orare.find({});
 
+	const promises = data.map(async (orar) => {
+		return Promise.all(orar.zile.map(async (zi) => {
+			return Promise.all(zi.ora.map(async (ora) => {
+				if (ora.Materie != "Liber") {
+					const matID = await materii.findOne({ "nume": ora.Materie });
+
+					//get object id of matID
+
+					ora._doc.matID = matID._id;
+				}
+			}));
+		}));
+	});
+
+	await Promise.all(promises);
+
+	console.log(data[0].zile[0].ora[0]);
+
 	data.forEach(e => {
 		const doc = new jsPDF("landscape");
 

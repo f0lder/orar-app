@@ -4,10 +4,11 @@ block content
     if grupa == null
         h2 Invalid code
     else
-        h2 Cod: #{grupa.cod}    
-        h2 Numar Studenti: #{grupa.nStudenti}
-        h2 Numar semigrupe: #{grupa.nSemigrupe}
-        h2 An: #{grupa.an}
+        ul.list-group.list-group-horizontal.py-2.m-3
+            li.list-group-item Grupa #{grupa.cod}
+            li.list-group-item An #{grupa.an}
+            li.list-group-item Numar studenti #{grupa.nStudenti}
+            li.list-group-item Numar semigrupe #{grupa.nSemigrupe}
 
     .container-fluid 
         if orare != null 
@@ -15,8 +16,6 @@ block content
                 .card.mt-3
                     .card-header
                         .row
-                            .col Grupa
-                                a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) #{orar.grupa}
                             .col.d-flex.justify-content-end 
                                 button.btn.btn-outline-primary Descarca pdf
                     .card-body 

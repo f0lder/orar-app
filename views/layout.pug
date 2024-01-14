@@ -13,7 +13,12 @@ html
 	body
 		nav.navbar.navbar-expand-lg.navbar.navbar-dark.bg-primary
 			.container-fluid
-				a.navbar-brand(href="/") Orar UB
+				a.navbar-brand(href="/")
+					.row
+						.col
+							img(src="/images/logo.svg", width="45", height="45", class="d-inline-block align-text-top")
+						.col.d-flex.align-items-center
+							p.m-0 Orare
 				if loggedin
 					ul.navbar-nav
 						li.nav-item.active
@@ -41,7 +46,7 @@ html
 							a.nav-link(href="/logout") Logout
 		.main
 			block content
-		.blue 
+		.blue
 			.container
 				footer
 					.row.d-flex.justify-content-end.border-top.py-5.mt-5

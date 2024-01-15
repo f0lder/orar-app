@@ -1,8 +1,6 @@
 var express = require("express");
 var router = express.Router();
 
-const mongoose = require("mongoose");
-
 const sali = require('../models').sali;
 
 async function getSalaByID(id){

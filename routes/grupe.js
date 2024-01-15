@@ -1,6 +1,4 @@
 var express = require("express");
-const mongoose = require("mongoose");
-const { all } = require(".");
 
 var router = express.Router();
 

@@ -59,8 +59,7 @@ router.get("/", async function (req, res, next) {
 
 	await Promise.all(promises);
 
-	console.log(data[0].zile[0].ora[0]);
-
+	
 	data.forEach(e => {
 		const doc = new jsPDF("landscape");
 

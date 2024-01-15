@@ -3,16 +3,6 @@ const mongoose = require("mongoose");
 
 var router = express.Router();
 
-// const SaliSchema = new mongoose.Schema({
-//     corp: String,
-//     etaj: Number,
-//     numar: Number,
-//     capacitate: Number
-// }, {
-//     versionKey: false
-// });
-// const sali = mongoose.models.sali || mongoose.model('sali', SaliSchema, "sali");
-
 const sali = require("../models").sali;
 
 async function getSali() {

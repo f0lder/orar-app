@@ -49,19 +49,19 @@ block content
                         select.form-select(id="etaj" name="etaj")
                             option(value='0') P
                             option 1
-                            option 2
+                            option 2    
                             option 3
                         label.col-form-label(for="etaj") Etaj
                     .form-floating.m-3
                         //numar
-                        input.form-control.is-invalid(id="numar" type="number" name="numar")
-                        label.col-form-label(for="numar") Numar
+                        input.form-control(id="numar" type="number" name="numar" placeholder="Numar" required)
+                        label(for="numar") Numar
                         .invalid-feedback Nu poate fi mai mic decat 0!
                     .form-floating.m-3
                         //capacitate
                         
-                        input.form-control.is-invalid(id="capacitate" type="number" name="capacitate")
-                        label.col-form-label(for="capacitate") Capacitate
+                        input.form-control(id="capacitate" type="number" name="capacitate" placeholder="Capacitate" required)
+                        label(for="capacitate") Capacitate
                         .invalid-feedback Nu poate fi mai mic decat 0!
                     .form-floating.m-3
                         //cod

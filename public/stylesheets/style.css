@@ -95,3 +95,12 @@ input[type='number']::-webkit-outer-spin-button {
 a{
     text-decoration: none;
 }
+
+.author-link{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: white;
+        text-decoration: underline;
+    }
+}

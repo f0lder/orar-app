@@ -1,0 +1,50 @@
+extends layout
+
+block content
+
+    if name == null 
+        h2 You are not logged in
+    else
+        h2.p-3 Bine ai revenit, #{name}.
+        
+
+        p.lead.p-3 Aceasta este pagina unde poti adauga grupe, sali, materii, orare, profesori.
+
+        .row.m-3
+            .col
+                .card
+                    .card-body
+                        h5.card-title Adauga grupe
+                        p.card-text Adauga grupe noi in baza de date.
+                        a.btn.btn-primary(href="/grupe") Adauga grupe
+            .col
+                .card
+                    .card-body
+                        h5.card-title Adauga sali
+                        p.card-text Adauga sali noi in baza de date.
+                        a.btn.btn-primary(href="/sali") Adauga sali
+            .col
+                .card
+                    .card-body
+                        h5.card-title Adauga materii
+                        p.card-text Adauga materii noi in baza de date.
+                        a.btn.btn-primary(href="/materii") Adauga materii
+        .row.m-3
+            .col
+                .card
+                    .card-body
+                        h5.card-title Creaza orare
+                        p.card-text Adauga orare noi in baza de date.
+                        a.btn.btn-primary(href="/orar") Adauga orare
+            .col
+                .card
+                    .card-body
+                        h5.card-title Adauga profesori
+                        p.card-text Adauga profesori noi in baza de date.
+                        a.btn.btn-primary(href="/profi") Adauga profesori
+            .col
+                .card
+                    .card-body
+                        h5.card-title Creaza un cont nou
+                        p.card-text Creaza un cont nou pentru un admin
+                        a.btn.btn-primary(href="/new") Adauga date

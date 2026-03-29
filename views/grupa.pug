@@ -1,0 +1,43 @@
+extends layout 
+
+block content 
+    if grupa == null
+        h2 Invalid code
+    else
+        ul.list-group.list-group-horizontal.py-2.m-3
+            li.list-group-item Grupa #{grupa.cod}
+            li.list-group-item An #{grupa.an}
+            li.list-group-item Numar studenti #{grupa.nStudenti}
+            li.list-group-item Numar semigrupe #{grupa.nSemigrupe}
+
+    .container-fluid 
+        if orare != null 
+            each orar in orare
+                .card.mt-3
+                    .card-header
+                        .row
+                            .col.d-flex.justify-content-end 
+                                button.btn.btn-outline-primary Descarca pdf
+                    .card-body 
+                        table.table.table-bordered.table-hover 
+                            thead 
+                                tr 
+                                th(scope="col" style="width:5%") Ora 
+                                th(scope="col") Luni 
+                                th(scope="col") Marti 
+                                th(scope="col") Miercuri 
+                                th(scope="col") Joi 
+                                th(scope="col") Vineri 
+                            tbody
+                                -var ora = 9
+                                each zi in orar.zile 
+                                    tr 
+                                        th(scope="row") #{ora}-#{ora+2}
+                                        -ora += 2
+                                            each ora in zi.ora 
+                                                if ora.Materie == "Liber"
+                                                    td  
+                                                else 
+                                                    td  
+                                                        p.text-center #{ora.Materie}
+                                                        p.text-center #{ora.tip} #{ora.idSala}

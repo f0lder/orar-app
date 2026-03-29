@@ -1,0 +1,47 @@
+extends layout
+
+block content 
+    h2 Profi
+    table.table.table.striped
+        thead 
+            tr
+                th(scope="col") ID
+                th(scope="col") Nume
+                th(scope="col") ID Materii
+        tbody 
+            each prof in profi
+                tr 
+                    th(scope="row") #{prof.id}
+                    td 
+                        a(href="/profi/id="+prof._id) #{prof.nume}
+                    td
+                        if prof.materii.length
+                            each materie in prof.materii
+                                a.btn.btn-outline-secondary.m-1(href=`/materii/id=${materie._id}`) #{materie.nume} &nbsp;
+                        else 
+                            p.fst-italic Nu are materii
+    .container
+        .row
+            .col-lg-5.col-md-10.m-auto
+                form(action="profi/insertProf", method="post")
+                    .form-floating.m-4
+                        input.form-control#ID(type="text" readonly value = maxID name="id")
+                        label(for ="ID") ID
+                    .form-floating.m-4
+                        input.form-control#numeProf(type="text" name="nume" placeholder="")
+                        label(for="numeProf") Nume profesor
+                        .invalid-feedback Numele profesorului nu poate fi gol!
+                    .form-group.m-4
+                        select.multiple-sel.form-control#idProf(name="materii" multiple)
+                                if materii != null 
+                                    each p in materii
+                                        option(value=p.id) #{p.nume}
+                    .form-group.m-4
+                        .alert.alert-warning(role="alert")
+                           | Daca alegeti o materie care este atribuita deja unui profesor, aceasta va fi atribuita noului profesor si stearsa de la cel vechi.
+
+                    .form-group.m-4 
+                        button.btn.btn-outline-primary.m-2#send(type="submit" ) Iserează profesor
+                        button.btn.btn-outline-secondary.m-2(type="reset" ) Reset
+    script(src="javascripts/functions.js")
+    script(src="javascripts/profi.js")

@@ -1,0 +1,5 @@
+.form-group.m-4
+    select.test.form-control(name=selectName)
+        if materii != null 
+            each m in materii
+                option #{m.nume}

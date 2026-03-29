@@ -1,8 +1,97 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.main{
+    display: block;
+    min-height: 100vh;
 }
 
-a {
-  color: #00B7FF;
+.dele:hover{
+    cursor: pointer;
+    color: red;
+}
+.dele svg{
+    color: black;
+}
+.dele:hover svg{
+    color: red;
+}
+.sortable-chosen{
+    cursor: pointer;
+}
+.tabel-sali{
+    height: 100%;
+}
+.tabel-sali td,.tabel-sali th{
+    text-align: center;
+    vertical-align: middle;
+    font-size: larger;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.tabel-orar td:hover {
+    background-color: rgba(0,0,0,.075);
+}
+
+.ora{
+    margin: auto;
+    height: 5em;
+    width: 90%;
+}
+
+#list1 li{
+    margin:.2em;
+}
+
+
+.bg{
+    background-color: gray;
+}
+
+.tabel-orar td{
+    width: 20%;
+}
+
+.show-item{
+    height: 100%;
+    margin: 1em;
+}
+
+.show-btn{
+    display: block;
+    margin:-1em;
+    padding: 3em;
+    cursor: pointer;
+}
+
+.show-btn svg{
+    color: gray;
+}
+
+
+.btn-primary:disabled{
+    pointer-events: visible;
+    cursor: not-allowed;
+}
+
+.btn-outline-primary:disabled{
+    pointer-events: visible;
+    cursor: not-allowed;
+}
+
+.logo{
+    height: 7em;
+}
+.blue{
+    background-color: #0d6efd;
+    color: white;
+}
+
+.font{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+a{
+    text-decoration: none;
 }

@@ -1,9 +1,235 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
-	form(action="/auth" method="post")
-		input(type="text" name="username" placeholder="Username" id="username" required)
-		input(type="password" name="password" placeholder="Password" id="password" required)
-		input(type="submit" value="Login")
+	.container-fluid
+		if orare != null
+			each orar in orare
+				.card.mt-3
+					.card-header
+						.row
+							.col
+								a.btn.btn-outline-secondary(href="/grupe/cod=" + orar.grupa) Grupa #{orar.grupa}
+							.col.d-flex.justify-content-end
+								a.btn.btn-outline-primary(href=orar.pdf download="Orar "+orar.grupa+".pdf")
+									svg(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", class="bi bi-download", viewBox="0 0 16 16")
+										path(d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5")
+										path(d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z")
+					.card-body
+						table.table.table-bordered.table-hover
+							thead
+								tr
+									th(scope="col" style="width:5%")
+										p.text-center
+											svg(xmlns="http://www.w3.org/2000/svg", width="26", height="26", fill="currentColor", class="bi bi-clock", viewBox="0 0 16 16")
+												path(d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z")
+												path(d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0")
+										
+									th(scope="col") 
+										p.text-center Luni
+									th.text-center(scope="col")
+										p.text-center Marti
+									th.text-center(scope="col")
+										p.text-center Miercuri
+									th.text-center(scope="col")
+										p.text-center Joi
+									th.text-center(scope="col")
+										p.text-center Vineri
+							tbody
+								tr
+									th.text-center.align-middle(scope="row") 9-11
+										td
+											if orar.zile[0].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[0].ora[0]._doc.matID) #{orar.zile[0].ora[0].Materie}
+												p.text-center #{orar.zile[0].ora[0].tip} #{orar.zile[0].ora[0].idSala}
+										td
+											if orar.zile[1].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[1].ora[0]._doc.matID) #{orar.zile[1].ora[0].Materie}
+												p.text-center #{orar.zile[1].ora[0].tip} #{orar.zile[1].ora[0].idSala}
+										td
+											if orar.zile[2].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[2].ora[0]._doc.matID) #{orar.zile[2].ora[0].Materie}
+												p.text-center #{orar.zile[2].ora[0].tip} #{orar.zile[2].ora[0].idSala}
+										td
+											if orar.zile[3].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[3].ora[0]._doc.matID) #{orar.zile[3].ora[0].Materie}
+												p.text-center #{orar.zile[3].ora[0].tip} #{orar.zile[3].ora[0].idSala}
+										td
+											if orar.zile[4].ora[0].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[4].ora[0]._doc.matID) #{orar.zile[4].ora[0].Materie}
+												p.text-center #{orar.zile[4].ora[0].tip} #{orar.zile[4].ora[0].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 11-13
+										td
+											if orar.zile[0].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[0].ora[1]._doc.matID) #{orar.zile[0].ora[1].Materie}
+												p.text-center #{orar.zile[0].ora[1].tip} #{orar.zile[0].ora[1].idSala}
+										td
+											if orar.zile[1].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[1].ora[1]._doc.matID) #{orar.zile[1].ora[1].Materie}
+												p.text-center #{orar.zile[1].ora[1].tip} #{orar.zile[1].ora[1].idSala}
+										td
+											if orar.zile[2].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[2].ora[1]._doc.matID) #{orar.zile[2].ora[1].Materie}
+												p.text-center #{orar.zile[2].ora[1].tip} #{orar.zile[2].ora[1].idSala}
+										td
+											if orar.zile[3].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[3].ora[1]._doc.matID) #{orar.zile[3].ora[1].Materie}
+												p.text-center #{orar.zile[3].ora[1].tip} #{orar.zile[3].ora[1].idSala}
+										td
+											if orar.zile[4].ora[1].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[4].ora[1]._doc.matID) #{orar.zile[4].ora[1].Materie}
+												p.text-center #{orar.zile[4].ora[1].tip} #{orar.zile[4].ora[1].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 13-15
+										td
+											if orar.zile[0].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[0].ora[2]._doc.matID) #{orar.zile[0].ora[2].Materie}
+												p.text-center #{orar.zile[0].ora[2].tip} #{orar.zile[0].ora[2].idSala}
+										td
+											if orar.zile[1].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[1].ora[2]._doc.matID) #{orar.zile[1].ora[2].Materie}
+												p.text-center #{orar.zile[1].ora[2].tip} #{orar.zile[1].ora[2].idSala}
+										td
+											if orar.zile[2].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[2].ora[2]._doc.matID) #{orar.zile[2].ora[2].Materie}
+												p.text-center #{orar.zile[2].ora[2].tip} #{orar.zile[2].ora[2].idSala}
+										td
+											if orar.zile[3].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[3].ora[2]._doc.matID) #{orar.zile[3].ora[2].Materie}
+												p.text-center #{orar.zile[3].ora[2].tip} #{orar.zile[3].ora[2].idSala}
+										td
+											if orar.zile[4].ora[2].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[4].ora[2]._doc.matID) #{orar.zile[4].ora[2].Materie}
+												p.text-center #{orar.zile[4].ora[2].tip} #{orar.zile[4].ora[2].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 15-17
+										td
+											if orar.zile[0].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[0].ora[3]._doc.matID) #{orar.zile[0].ora[3].Materie}
+												p.text-center #{orar.zile[0].ora[3].tip} #{orar.zile[0].ora[3].idSala}
+										td
+											if orar.zile[1].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[1].ora[3]._doc.matID) #{orar.zile[1].ora[3].Materie}
+												p.text-center #{orar.zile[1].ora[3].tip} #{orar.zile[1].ora[3].idSala}
+										td
+											if orar.zile[2].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[2].ora[3]._doc.matID) #{orar.zile[2].ora[3].Materie}
+												p.text-center #{orar.zile[2].ora[3].tip} #{orar.zile[2].ora[3].idSala}
+										td
+											if orar.zile[3].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[3].ora[3]._doc.matID) #{orar.zile[3].ora[3].Materie}
+												p.text-center #{orar.zile[3].ora[3].tip} #{orar.zile[3].ora[3].idSala}
+										td
+											if orar.zile[4].ora[3].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[4].ora[3]._doc.matID) #{orar.zile[4].ora[3].Materie}
+												p.text-center #{orar.zile[4].ora[3].tip} #{orar.zile[4].ora[3].idSala}
+								tr
+									th.text-center.align-middle(scope="row") 17-19
+										td
+											if orar.zile[0].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[0].ora[4]._doc.matID) #{orar.zile[0].ora[4].Materie}
+												p.text-center #{orar.zile[0].ora[4].tip} #{orar.zile[0].ora[4].idSala}
+										td
+											if orar.zile[1].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[1].ora[4]._doc.matID) #{orar.zile[1].ora[4].Materie}
+												p.text-center #{orar.zile[1].ora[4].tip} #{orar.zile[1].ora[4].idSala}
+										td
+											if orar.zile[2].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[2].ora[4]._doc.matID) #{orar.zile[2].ora[4].Materie}
+												p.text-center #{orar.zile[2].ora[4].tip} #{orar.zile[2].ora[4].idSala}
+										td
+											if orar.zile[3].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[3].ora[4]._doc.matID) #{orar.zile[3].ora[4].Materie}
+												p.text-center #{orar.zile[3].ora[4].tip} #{orar.zile[3].ora[4].idSala}
+										td
+											if orar.zile[4].ora[4].Materie == "Liber"
+												p.text-center 
+											else
+												p.text-center 
+													a.btn.btn-outline-primary(href="/materii/id=" + orar.zile[4].ora[4]._doc.matID) #{orar.zile[4].ora[4].Materie}
+												p.text-center #{orar.zile[4].ora[4].tip} #{orar.zile[4].ora[4].idSala}
+	if redirected
+		.container-fluid.d-flex.justify-content-center.align-items-center.m-4
+			.alert.alert-danger.text-center.w-50
+				strong Te rog să te 
+					a(href="/login") conectezi
+					|  pentru a accesa această pagină.
+		a.btn.btn-outline-primary.m-3(href="/login")
+			svg.bi.bi-arrow-left(xmlns="http://www.w3.org/2000/svg", width="16", height="16", fill="currentColor", viewBox="0 0 16 16")
+				path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8")
+			|  Înapoi acasă
+	if !loggedin && !redirected
+		.col-4.p-3
+			a.btn.btn-outline-primary(href="/login") Login
